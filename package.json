@@ -5,6 +5,7 @@
   "dependencies": {
     "canvas-dpi-scaler": "0.0.3",
     "firebase": "^4.3.0",
+    "raven-js": "^3.17.0",
     "react": "^15.6.1",
     "react-color": "^2.13.5",
     "react-dom": "^15.6.1",
