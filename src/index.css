@@ -2,5 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+}
+
+.sketch-picker{
+  position: absolute;
+  top: 53px;
+  left:225px;
+  font-family: 'Montserrat', sans-serif;
 }
