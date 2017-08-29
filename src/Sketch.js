@@ -7,9 +7,11 @@ class Sketch extends Component{
     this.state={
       isDrawing:false,
       strokeColor:'#FFB000',
+      normal:true,
+      rainbow:false,
       ctx:null,
-      canvas:null
-
+      canvas:null,
+      hue:0
     }
     this.updateCanvas = this.updateCanvas.bind(this);
     this.sketchUp = this.sketchUp.bind(this);
@@ -20,7 +22,6 @@ class Sketch extends Component{
   }
 
   componentDidMount(){
-    // this.makeCanvas();
      this.updateCanvas();
   }
 
@@ -28,19 +29,15 @@ class Sketch extends Component{
     this.setState({
       strokeColor:newProps.colorvalue
     });
-    //this.updateCanvas();
   }
-
-
 
   updateCanvas(){
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    // let isDrawing=false;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight-50;
-    // const width = canvas.width;
-    // const height = canvas.height;
+    const width = canvas.width;
+    const height = canvas.height;
     canvasDpiScaler(canvas,ctx);
     this.setState({
       ctx:ctx,
@@ -50,7 +47,7 @@ class Sketch extends Component{
 
   sketchDown(e){
     this.setState({isDrawing:true});
-    this.state.ctx.lineWidth = 60;
+    this.state.ctx.lineWidth = 3;
     this.state.ctx.shadowBlur = 10;
     this.state.ctx.lineJoin = 'round';
     this.state.ctx.lineCap = 'round';
@@ -59,15 +56,15 @@ class Sketch extends Component{
   }
 
   sketchMove(e){
-      if (this.state.isDrawing) {
-        this.state.ctx.lineTo(e.clientX , e.clientY - 50);
-        this.state.ctx.stroke();
-        this.state.ctx.beginPath();
-        this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
-        this.state.ctx.fillStyle = this.state.color;
-        this.state.ctx.beginPath();
-        this.state.ctx.moveTo(e.clientX , e.clientY - 50);
-      }
+    if (this.state.isDrawing) {
+      this.state.ctx.lineTo(e.clientX , e.clientY - 50);
+      this.state.ctx.stroke();
+      this.state.ctx.beginPath();
+      this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
+      this.state.ctx.fillStyle = this.state.color;
+      this.state.ctx.beginPath();
+      this.state.ctx.moveTo(e.clientX , e.clientY - 50);
+    }
   }
 
   sketchUp(){
@@ -80,7 +77,10 @@ class Sketch extends Component{
 
   render(){
     return(
-      <canvas className='sheet' ref='canvas' id='canvas' onMouseDown={this.sketchDown} onMouseMove={this.sketchMove} onMouseLeave={this.sketchLeave} onMouseUp={this.sketchUp}></canvas>
+      <canvas className='sheet' ref='canvas' id='canvas' onMouseDown={this.sketchDown} onTouchStart={this.sketchDown}
+        onTouchMove={this.sketchMove}
+      onMouseMove={this.sketchMove} onMouseLeave={this.sketchLeave} onMouseUp={this.sketchUp}>
+      </canvas>
     )
   }
 }
