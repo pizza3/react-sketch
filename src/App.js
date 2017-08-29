@@ -12,22 +12,34 @@ class App extends Component {
     this.state={
       colorPass:'#FFB000',
       open:false,
-      grid:false
+      grid:false,
+      normal:true,
+      rainbow:false,
+      undo:false,
+      redo:false,
     }
     this.handleChange=this.handleChange.bind(this);
     this.openState=this.openState.bind(this);
     this.openGrid=this.openGrid.bind(this);
+    this.openRainbow=this.openRainbow.bind(this);
+    this.undoState=this.undoState.bind(this);
+    this.redoState=this.redoState.bind(this);
+
   }
 
   handleChange(color){
     this.setState({
-      colorPass:color.hex
+      colorPass:color.hex,
+      normal:true,
+      rainbow:false
     });
   }
 
   openState(){
     this.setState({
-      open:!this.state.open
+      open:!this.state.open,
+      normal:true,
+      rainbow:false
     });
   }
 
@@ -37,15 +49,45 @@ class App extends Component {
     })
   }
 
+  openRainbow(){
+    this.setState({
+      normal:false,
+      rainbow:true,
+      open:false
+    })
+  }
+
+  undoState(){
+    this.setState({
+      undo:true
+    });
+    setTimeout(()=>{
+      this.setState({
+        undo:false
+      });
+    },300)
+  }
+
+  redoState(){
+    this.setState({
+      redo:true
+    });
+    setTimeout(()=>{
+      this.setState({
+        redo:false
+      });
+    },300)
+  }
+
   render() {
     return (
       <div className="App">
-        <Navbar colorvalue={this.state.colorPass} action={this.openState} dispGrid={this.openGrid}/>
+        <Navbar colorvalue={this.state.colorPass} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow}/>
         { this.state.open?
-          <SketchPicker color='#FFB000' onChange={ this.handleChange }  />:null }
+          <SketchPicker color='#FFB000' onChange={this.handleChange }  />:null }
         {this.state.grid?
           <Grid/>:null}
-        <Sketch colorvalue={this.state.colorPass} />
+        <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} undoVal={this.state.undo} redoVal={this.state.redo}/>
       </div>
     );
   }
