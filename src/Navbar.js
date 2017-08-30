@@ -3,13 +3,15 @@ class Navbar extends Component{
   constructor(props){
     super(props);
     this.state={
-      color:'#FFB000',
+      color:'#292929',
+      user:null
     }
   }
 
   componentWillReceiveProps(newProps) {
     this.setState({
-      color:newProps.colorvalue
+      color:newProps.colorvalue,
+      user:newProps.user.photoURL
     });
   }
 
@@ -42,6 +44,10 @@ class Navbar extends Component{
         </div>
         <div className='delete'>
         </div>
+        <div className='profile'>
+          <img src={this.state.user} />
+        </div>
+        <div className='logout' onClick={this.props.userOut}>Logout</div>
       </div>
     )
   }

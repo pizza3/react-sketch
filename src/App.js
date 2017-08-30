@@ -3,6 +3,9 @@ import Navbar from './Navbar.js'
 import Sketch from './Sketch.js'
 import Grid from './Grid.js'
 import { SketchPicker } from 'react-color';
+import {Route, Link} from "react-router-dom";
+import firebase , {auth, provider, provider2} from './firebase.js';
+
 import Raven from 'raven-js';
 
 Raven.config('https://dd96fa0593f0410e98119edc5d677e8c@sentry.io/209342').install()
@@ -10,13 +13,14 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      colorPass:'#FFB000',
+      colorPass:'#292929',
       open:false,
-      grid:false,
+      grid:true,
       normal:true,
       rainbow:false,
       undo:false,
       redo:false,
+      user:null
     }
     this.handleChange=this.handleChange.bind(this);
     this.openState=this.openState.bind(this);
@@ -24,16 +28,14 @@ class App extends Component {
     this.openRainbow=this.openRainbow.bind(this);
     this.undoState=this.undoState.bind(this);
     this.redoState=this.redoState.bind(this);
-
+    this.loginGoogle = this.loginGoogle.bind(this);
+    this.logoutGoogle = this.logoutGoogle.bind(this);
+    this.loginFacebook = this.loginFacebook.bind(this);
+    this.logoutFacebook = this.logoutFacebook.bind(this);
   }
-
-  handleChange(color){
-    this.setState({
-      colorPass:color.hex,
-      normal:true,
-      rainbow:false
-    });
-  }
+handleChange(color) {
+  this.setState({colorPass: color.hex, normal: true, rainbow: false});
+}
 
   openState(){
     this.setState({
@@ -79,15 +81,82 @@ class App extends Component {
     },300)
   }
 
+  loginGoogle(){
+    auth.signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
+      this.setState({
+        user
+      });
+    });
+  }
+
+logoutGoogle(){
+  auth.signOut()
+  .then(() => {
+    this.setState({
+      user: null
+    });
+  });
+  }
+
+  loginFacebook(){
+    auth.signInWithPopup(provider2)
+    .then((result) => {
+      const user = result.user;
+      this.setState({
+        user
+      });
+      console.log(user);
+    }).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+  console.log(error);
+});
+  }
+
+logoutFacebook(){
+  auth.signOut()
+  .then(() => {
+    this.setState({
+      user: null
+    });
+  });
+  }
+
+  componentDidMount(){
+    auth.onAuthStateChanged((user)=>{
+      if(user){
+        this.setState({user});
+      }
+    });
+  }
+
+
   render() {
     return (
       <div className="App">
-        <Navbar colorvalue={this.state.colorPass} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow}/>
-        { this.state.open?
-          <SketchPicker color='#FFB000' onChange={this.handleChange }  />:null }
         {this.state.grid?
           <Grid/>:null}
-        <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} undoVal={this.state.undo} redoVal={this.state.redo}/>
+        {this.state.user==null?
+          <div>
+            <div className='head'>SCRAP</div>
+            <div className='google-signin' onClick={this.loginGoogle}></div>
+            {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}
+          </div>:null}
+          {this.state.user?
+            <div>
+           <Navbar colorvalue={this.state.colorPass} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow}/>
+           { this.state.open?
+            <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
+         <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} undoVal={this.state.undo} redoVal={this.state.redo}/>
+       </div>:null}
       </div>
     );
   }

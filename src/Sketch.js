@@ -6,7 +6,7 @@ class Sketch extends Component{
     super(props);
     this.state={
       isDrawing:false,
-      strokeColor:'#FFB000',
+      strokeColor:'#292929',
       normal:true,
       ctx:null,
       canvas:null,
@@ -65,7 +65,7 @@ class Sketch extends Component{
 
   sketchDown(e){
     this.setState({isDrawing:true});
-    this.state.ctx.lineWidth = 50;
+    this.state.ctx.lineWidth = 60;
     this.state.ctx.shadowBlur = 10;
     this.state.ctx.lineJoin = 'round';
     this.state.ctx.lineCap = 'round';

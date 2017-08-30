@@ -7,7 +7,7 @@ class Grid extends Component{
     this.state={
       ctx:null,
       canvas:null,
-      fillStroke:'#e0e0e0'
+      fillStroke:'#f3f3f3'
     }
     this.updateCanvas = this.updateCanvas.bind(this);
   }
@@ -20,7 +20,7 @@ class Grid extends Component{
     const canvas = document.getElementById('grid');
     const ctx = this.refs.grid.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight-50;
+    canvas.height = window.innerHeight;
     const width = canvas.width;
     const height = canvas.height;
     canvasDpiScaler(canvas,ctx);

@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,9 +8,67 @@
   user-select: none;
 }
 
+.head {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 86px;
+  font-weight: 900;
+  left: 0;
+  right: 0;
+  margin-top: 13vh;
+  position: fixed;
+  text-align: center;
+  color: #292929;
+  -webkit-text-fill-color: #292929;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #292929;
+  z-index: 20;
+}
+
+.google-signin {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 47vh;
+  width: 382px;
+  height: 92px;
+  z-index: 20;
+  background: #fff;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('./images/google-btn.png');
+  background-position: center;
+  background-size: cover;
+  transform: scale(.5);
+  transition: .4s;
+}
+
+.facebook-signin {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 57vh;
+  width: 382px;
+  height: 92px;
+  z-index: 20;
+  background: #000;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  background-position: center;
+  background-size: cover;
+  transform: scale(.5);
+  transition: .4s;
+}
 
 
-.navigation{
+.navigation {
   position: absolute;
   width: 100%;
   height: 50px;
@@ -23,25 +81,26 @@
   z-index: 30;
 }
 
-.logo{
+.logo {
   font-family: 'Montserrat', sans-serif;
   font-size: 40px;
-  font-weight:900;
+  font-weight: 900;
   margin-left: 10px;
   position: relative;
   float: left;
-  color: black;
-   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: black;
+  color: #292929;
+  -webkit-text-fill-color: #292929;
+  /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #292929;
 }
 
-.rainbow{
+.rainbow {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 30px;
   margin-top: 7px;
@@ -52,13 +111,12 @@
   transition: .5s;
 }
 
-
-.pick{
+.pick {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -66,12 +124,12 @@
   transition: .5s;
 }
 
-.grid-btn{
+.grid-btn {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -82,12 +140,12 @@
   background-size: cover;
 }
 
-.undo{
+.undo {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -95,26 +153,26 @@
   transition: .5s;
 }
 
-#undo{
+#undo {
   position: absolute;
   width: 20px;
   bottom: -16px;
   left: 6px;
 }
 
-#redo{
+#redo {
   position: absolute;
   width: 20px;
   bottom: -16px;
   left: 7px;
 }
 
-.redo{
+.redo {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -122,12 +180,12 @@
   transition: .5s;
 }
 
-.delete{
+.delete {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #000;
+  border: 1px solid #292929;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -135,27 +193,69 @@
   transition: .5s;
 }
 
-.sheet{
+.profile {
+  position: relative;
+  float: right;
+  width: 35px;
+  height: 35px;
+  /*border: 1px solid #292929;*/
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 7px;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.profile img {
+  border-radius: 50%;
+  max-width: 100%;
+}
+
+.logout {
+  position: relative;
+  float: right;
+  width: 67px;
+  height: 33px;
+  border: 1px solid #292929;
+  margin-right: 10px;
+  margin-top: 8px;
+  background: #292929;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding-top: 9px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: .4s;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.logout:hover {
+  color: #292929;
+  background: #fff;
+}
+
+.sheet {
   position: absolute;
   z-index: 10;
-  top:50px;
+  top: 50px;
   width: 100%;
   height: 100vh;
   cursor: cell;
 }
 
-.grid{
+.grid {
   position: absolute;
   z-index: 1;
-  top:50px;
   width: 100%;
   height: 100vh;
 }
 
-.sketch-picker{
+.sketch-picker {
   position: absolute;
   top: 53px;
-  left:225px;
+  left: 225px;
   font-family: 'Montserrat', sans-serif;
   z-index: 100;
 }
