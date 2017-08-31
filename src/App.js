@@ -20,7 +20,9 @@ class App extends Component {
       rainbow:false,
       undo:false,
       redo:false,
-      user:null
+      delete:false,
+      user:null,
+      save:false
     }
     this.handleChange=this.handleChange.bind(this);
     this.openState=this.openState.bind(this);
@@ -32,6 +34,9 @@ class App extends Component {
     this.logoutGoogle = this.logoutGoogle.bind(this);
     this.loginFacebook = this.loginFacebook.bind(this);
     this.logoutFacebook = this.logoutFacebook.bind(this);
+    this.deleteCanvas = this.deleteCanvas.bind(this);
+    this.saveCanvas = this.saveCanvas.bind(this);
+
   }
 handleChange(color) {
   this.setState({colorPass: color.hex, normal: true, rainbow: false});
@@ -130,6 +135,28 @@ logoutFacebook(){
   });
   }
 
+  saveCanvas(){
+    this.setState({
+      save:!this.state.save
+    });
+    setTimeout(()=>{
+      this.setState({
+        save:false
+      });
+    },300)
+  }
+
+  deleteCanvas(){
+    this.setState({
+      delete:!this.state.delete
+    });
+    setTimeout(()=>{
+      this.setState({
+        delete:false
+      });
+    },300)
+  }
+
   componentDidMount(){
     auth.onAuthStateChanged((user)=>{
       if(user){
@@ -152,10 +179,10 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow}/>
+           <Navbar colorvalue={this.state.colorPass} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
-         <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} undoVal={this.state.undo} redoVal={this.state.redo}/>
+         <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}
       </div>
     );

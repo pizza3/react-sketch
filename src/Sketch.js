@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import canvasDpiScaler from 'canvas-dpi-scaler';
+import firebase from './firebase.js';
 
 class Sketch extends Component{
   constructor(props){
@@ -16,7 +17,10 @@ class Sketch extends Component{
       cPushArray:[],
       cStep:-1,
       undo:false,
-      redo:false
+      redo:false,
+      delete:false,
+      save:false,
+      user:null
     }
     this.updateCanvas = this.updateCanvas.bind(this);
     this.sketchUp = this.sketchUp.bind(this);
@@ -25,6 +29,7 @@ class Sketch extends Component{
     this.sketchMove = this.sketchMove.bind(this);
     this.undoCanvas = this.undoCanvas.bind(this);
     this.redoCanvas = this.redoCanvas.bind(this);
+    this.uploadSketch = this.uploadSketch.bind(this);
   }
 
   componentDidMount(){
@@ -35,7 +40,11 @@ class Sketch extends Component{
     this.setState({
       strokeColor:newProps.colorvalue,
       normal:newProps.normalVal,
+      user:newProps.user,
+      delete:newProps.delete,
+      save:newProps.save
       // undo:newProps.undoVal
+
     });
     if(newProps.undoVal){
       this.state.ctx.clearRect(0, 0, this.state.canvas.width, this.state.canvas.height);
@@ -44,6 +53,12 @@ class Sketch extends Component{
     else if (newProps.redoVal) {
       this.state.ctx.clearRect(0, 0, this.state.canvas.width, this.state.canvas.height);
       this.redoCanvas();
+    }
+    else if (newProps.delete) {
+      this.state.ctx.clearRect(0, 0, this.state.canvas.width, this.state.canvas.height);
+    }
+    else if (newProps.save) {
+      this.uploadSketch();
     }
   }
 
@@ -65,7 +80,7 @@ class Sketch extends Component{
 
   sketchDown(e){
     this.setState({isDrawing:true});
-    this.state.ctx.lineWidth = 60;
+    this.state.ctx.lineWidth = 40;
     this.state.ctx.shadowBlur = 10;
     this.state.ctx.lineJoin = 'round';
     this.state.ctx.lineCap = 'round';
@@ -152,6 +167,11 @@ redoCanvas(){
       this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
     }
   }
+}
+
+
+uploadSketch(){
+  
 }
 
   render(){

@@ -1,4 +1,5 @@
 import React ,{Component} from 'react';
+
 class Navbar extends Component{
   constructor(props){
     super(props);
@@ -29,25 +30,47 @@ class Navbar extends Component{
         <div className='pick' onClick={this.props.action}  style={back}></div>
         <div className='grid-btn' onClick={this.props.dispGrid}></div>
         <div className='undo' onClick={this.props.undo}>
-          <svg id='undo' width="64" height="64" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
-            <g>
-              <path fill="#1D1D1B" d="m1.253,42.328l9.126,5.32c0.025,0.014 0.051,0.019 0.076,0.032 0.081,0.043 0.165,0.073 0.252,0.105 0.085,0.031 0.168,0.063 0.256,0.082 0.08,0.018 0.162,0.024 0.246,0.032 0.062,0.006 0.125,0.024 0.187,0.024 0.036,0 0.069-0.012 0.104-0.014 0.031-0.001 0.063,0.007 0.096,0.004 0.051-0.005 0.095-0.026 0.144-0.035 0.098-0.017 0.192-0.037 0.286-0.069 0.078-0.025 0.152-0.056 0.227-0.091 0.086-0.04 0.168-0.086 0.248-0.138 0.07-0.046 0.137-0.095 0.2-0.149 0.07-0.06 0.134-0.125 0.198-0.195 0.06-0.068 0.115-0.138 0.166-0.214 0.023-0.037 0.058-0.064 0.08-0.104 0.017-0.028 0.016-0.062 0.031-0.091 0.03-0.058 0.072-0.108 0.098-0.17l3.631-8.989c0.418-1.036-0.082-2.214-1.119-2.633-1.035-0.415-2.214,0.084-2.633,1.118l-1.865,4.615c-1.244-4.161-1.1-8.437-1.097-8.555 0-13.71 11.153-24.864 24.864-24.864 13.709,0 24.863,11.154 24.863,24.864 0,13.709-11.154,24.864-24.863,24.864-1.117,0-2.023,0.906-2.023,2.022 0,1.117 0.906,2.023 2.023,2.023 15.941,0 28.909-12.968 28.909-28.909 0-15.941-12.968-28.91-28.909-28.91s-28.91,12.97-28.909,28.829c-0.01,0.251-0.156,4.451 1.039,8.972l-3.896-2.271c-0.965-0.564-2.204-0.236-2.766,0.729-0.562,0.965-0.236,2.204 0.73,2.766z"/>
-            </g>
-          </svg>
+          <svg id='undo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
         </div>
         <div className='redo' onClick={this.props.redo}>
-          <svg id='redo' width="64"  height="64" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
-            <g>
-              <path fill="#1D1D1B" d="m29.076,61.093c1.121,0 2.03-0.909 2.03-2.03 0-1.12-0.909-2.03-2.03-2.03-13.754,0-24.945-11.191-24.945-24.946 0-13.756 11.191-24.947 24.945-24.947 13.758,0 24.948,11.191 24.95,25.031 0.003,0.056 0.155,4.327-1.101,8.506l-1.873-4.637c-0.42-1.038-1.602-1.537-2.642-1.122-1.04,0.42-1.542,1.603-1.122,2.643l3.643,9.019c0.025,0.062 0.068,0.112 0.097,0.17 0.017,0.029 0.015,0.063 0.032,0.092 0.023,0.04 0.057,0.067 0.081,0.105 0.052,0.075 0.106,0.146 0.166,0.214 0.063,0.07 0.128,0.135 0.199,0.195 0.064,0.055 0.13,0.103 0.2,0.149 0.08,0.053 0.162,0.098 0.25,0.139 0.074,0.035 0.148,0.065 0.227,0.091 0.094,0.032 0.189,0.052 0.287,0.069 0.049,0.009 0.094,0.03 0.144,0.035 0.032,0.003 0.064-0.005 0.097-0.004 0.035,0.002 0.069,0.013 0.105,0.013 0.062,0 0.125-0.018 0.188-0.024 0.08-0.008 0.159-0.014 0.237-0.031 0.098-0.02 0.188-0.055 0.282-0.091 0.077-0.028 0.152-0.055 0.225-0.093 0.029-0.015 0.061-0.02 0.088-0.037l9.158-5.337c0.967-0.564 1.293-1.807 0.73-2.775-0.564-0.968-1.811-1.294-2.777-0.731l-3.906,2.278c1.199-4.53 1.053-8.723 1.043-8.918 0-15.995-13.012-29.007-29.008-29.007-15.992,0-29.005,13.012-29.005,29.007 9.14546e-15,15.993 13.013,29.004 29.005,29.004z"/>
-            </g>
-          </svg>
+          <svg id='redo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
         </div>
-        <div className='delete'>
+        <div className='delete' onClick={this.props.delete}>
+          <svg id='trash' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          <line x1="10" y1="11" x2="10" y2="17"></line>
+          <line x1="14" y1="11" x2="14" y2="17">
+          </line>
+        </svg>
+        </div>
+        <div className='save' onClick={this.props.save}>
+          <svg id='save' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud">
+          <polyline points="16 16 12 12 8 16"></polyline>
+          <line x1="12" y1="12" x2="12" y2="21"></line>
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+          <polyline points="16 16 12 12 8 16"></polyline>
+        </svg>
+        </div>
+        <div className='archive'>
+          <svg id='archive' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox">
+          <polyline points="22 13 16 13 14 16 10 16 8 13 2 13"></polyline>
+          <path d="M5.47 5.19L2 13v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5l-3.47-7.81A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.83 1.19z"></path>
+        </svg>
         </div>
         <div className='profile'>
           <img src={this.state.user} />
         </div>
-        <div className='logout' onClick={this.props.userOut}>Logout</div>
+        <div className='logout' onClick={this.props.userOut}>
+          <svg id='logout' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+          <path d="M10 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h5"></path>
+          <polyline points="17 16 21 12 17 8"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        </div>
       </div>
     )
   }

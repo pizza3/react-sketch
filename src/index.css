@@ -155,16 +155,14 @@
 
 #undo {
   position: absolute;
-  width: 20px;
-  bottom: -16px;
-  left: 6px;
+left: 3px;
+top: 4px;
 }
 
 #redo {
   position: absolute;
-  width: 20px;
-  bottom: -16px;
-  left: 7px;
+left: 5px;
+top: 4px;
 }
 
 .redo {
@@ -180,7 +178,7 @@
   transition: .5s;
 }
 
-.delete {
+.delete, .save, .archive {
   position: relative;
   float: left;
   width: 35px;
@@ -191,6 +189,27 @@
   margin-top: 7px;
   cursor: pointer;
   transition: .5s;
+}
+
+#trash{
+  position: absolute;
+left: 4px;
+top: 4px;
+transform: scale(0.9);
+}
+
+#save{
+  position: absolute;
+left: 4px;
+top: 4px;
+transform: scale(0.9);
+}
+
+#archive{
+  position: absolute;
+   left: 4px;
+   top: 4px;
+
 }
 
 .profile {
@@ -214,26 +233,21 @@
 .logout {
   position: relative;
   float: right;
-  width: 67px;
-  height: 33px;
+  width: 35px;
+  height: 35px;
   border: 1px solid #292929;
   margin-right: 10px;
-  margin-top: 8px;
-  background: #292929;
-  color: #fff;
-  border-radius: 4px;
-  text-align: center;
-  padding-top: 9px;
+  margin-top: 7px;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 11px;
   transition: .4s;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
 }
 
-.logout:hover {
-  color: #292929;
-  background: #fff;
+#logout{
+  position: absolute;
+    left: 6px;
+    top: 4px;
+    transform: scale(0.9);
 }
 
 .sheet {

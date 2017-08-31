@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "canvas-dpi-scaler": "0.0.3",
+    "feather-icons": "^3.2.2",
     "firebase": "^4.3.0",
     "raven-js": "^3.17.0",
     "react": "^15.6.1",
