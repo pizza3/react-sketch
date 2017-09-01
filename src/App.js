@@ -174,6 +174,7 @@ logoutFacebook(){
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
+            <div className='slogan'>Create Abstract Art With Ease.</div>
             <div className='google-signin' onClick={this.loginGoogle}></div>
             {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}
           </div>:null}

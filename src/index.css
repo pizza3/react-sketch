@@ -14,7 +14,7 @@
   font-weight: 900;
   left: 0;
   right: 0;
-  margin-top: 13vh;
+  margin-top: 18vh;
   position: fixed;
   text-align: center;
   color: #292929;
@@ -30,7 +30,7 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 47vh;
+  margin-top: 58vh;
   width: 382px;
   height: 92px;
   z-index: 20;
@@ -272,4 +272,19 @@ transform: scale(0.9);
   left: 225px;
   font-family: 'Montserrat', sans-serif;
   z-index: 100;
+}
+
+
+.slogan{
+  font-family: 'Roboto', sans-serif;
+font-size: 30px;
+font-weight: 200;
+left: 0;
+right: 0;
+margin-top: 36vh;
+position: fixed;
+text-align: center;
+color: #4688f1;
+z-index: 20;
+
 }
