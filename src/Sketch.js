@@ -8,12 +8,14 @@ class Sketch extends Component{
     this.state={
       isDrawing:false,
       strokeColor:'#292929',
+      strokeNo: "0",
       normal:true,
       ctx:null,
       canvas:null,
       width:null,
       height:null,
       hue:0,
+      points:[],
       cPushArray:[],
       cStep:-1,
       undo:false,
@@ -39,6 +41,7 @@ class Sketch extends Component{
   componentWillReceiveProps(newProps) {
     this.setState({
       strokeColor:newProps.colorvalue,
+      strokeNo:newProps.strokevalue,
       normal:newProps.normalVal,
       user:newProps.user,
       delete:newProps.delete,
@@ -79,54 +82,121 @@ class Sketch extends Component{
   }
 
   sketchDown(e){
-    this.setState({isDrawing:true});
-    this.state.ctx.lineWidth = 40;
-    this.state.ctx.shadowBlur = 10;
-    this.state.ctx.lineJoin = 'round';
-    this.state.ctx.lineCap = 'round';
-    this.state.ctx.beginPath();
     if(this.state.normal){
       this.state.ctx.strokeStyle=this.state.strokeColor;
     }
     else {
       this.state.ctx.strokeStyle='#BADA55';
     }
+    switch (this.state.strokeNo) {
+      case "0":
+      this.setState({isDrawing:true});
+      this.state.ctx.lineWidth = 1;
+      this.state.ctx.shadowBlur = 10;
+      this.state.ctx.lineJoin = 'round';
+      this.state.ctx.lineCap = 'round';
+      this.state.ctx.beginPath();
+      break;
+      case "1":
+      this.state.ctx.lineWidth = 1;
+      this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
+      this.setState({
+        points:this.state.points.concat({x: e.clientX, y: e.clientY })
+      })
+      break;
+      case "2":
+      this.state.ctx.lineWidth = 1;
+      this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
+      this.setState({
+        points:this.state.points.concat({x: e.clientX, y: e.clientY })
+      })
+      break;
+      case "3":
+      this.state.ctx.lineWidth = 1;
+      this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
+      this.setState({
+        points:this.state.points.concat({x: e.clientX, y: e.clientY })
+      })
+      break;
+      default:
+
+    }
+
+
   }
 
   sketchMove(e){
     if (this.state.isDrawing) {
-      if(this.state.normal){
-      this.state.ctx.lineTo(e.clientX , e.clientY - 50);
-      this.state.ctx.stroke();
-      this.state.ctx.beginPath();
-      this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
-      this.state.ctx.fillStyle = this.state.color;
-      this.state.ctx.beginPath();
-      this.state.ctx.moveTo(e.clientX , e.clientY - 50);
-    }
-
-    else{
-      this.state.ctx.strokeStyle = `hsl(${this.state.hue}, 100%, 50%)`;
-      this.state.ctx.lineTo(e.clientX , e.clientY - 50);
-      this.state.ctx.stroke();
-      this.state.ctx.beginPath();
-      this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
-      this.state.ctx.fillStyle = this.state.color;
-      this.state.ctx.beginPath();
-      this.state.ctx.moveTo(e.clientX , e.clientY - 50);
-      this.setState({
-        hue:this.state.hue+1
-      });
-      if (this.state.hue >= 360) {
-        this.setState({
-          hue:0});
-        }
+      switch (this.state.strokeNo) {
+        case "0":
+        if(this.state.normal){
+        this.state.ctx.lineTo(e.clientX , e.clientY - 50);
+        this.state.ctx.stroke();
+        this.state.ctx.beginPath();
+        this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
+        this.state.ctx.fillStyle = this.state.color;
+        this.state.ctx.beginPath();
+        this.state.ctx.moveTo(e.clientX , e.clientY - 50);
       }
+
+      else{
+        this.state.ctx.strokeStyle = `hsl(${this.state.hue}, 100%, 50%)`;
+        this.state.ctx.lineTo(e.clientX , e.clientY - 50);
+        this.state.ctx.stroke();
+        this.state.ctx.beginPath();
+        this.state.ctx.arc(e.clientX , e.clientY - 50, this.state.ctx.lineWidth * 2, 0, Math.PI * 2);
+        this.state.ctx.fillStyle = this.state.color;
+        this.state.ctx.beginPath();
+        this.state.ctx.moveTo(e.clientX , e.clientY - 50);
+        this.setState({
+          hue:this.state.hue+1
+        });
+        if (this.state.hue >= 360) {
+          this.setState({
+            hue:0
+          });
+          }
+        }
+          break;
+
+        case "1":
+        this.setState({
+          points:this.state.points.concat({x: e.clientX, y: e.clientY })
+        })
+        this.state.ctx.beginPath();
+        this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
+        this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
+        this.state.ctx.stroke();
+        for (var i = 0; i <this.state.points.length;  i++) {
+          var dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
+          var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
+          var d = dx * dx + dy * dy;
+          if (d < 1000) {
+            this.state.ctx.beginPath();
+            this.state.ctx.strokeStyle=this.state.strokeColor;
+            this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.2), this.state.points[this.state.points.length-1].y + (dy * 0.2));
+            this.state.ctx.lineTo( this.state.points[i].x - (dx * 0.2), this.state.points[i].y - (dy * 0.2));
+            this.state.ctx.stroke();
+          }}
+          break;
+
+        case "2":
+
+          break;
+
+        case "3":
+
+          break;
+        default:
+
+      }
+
     }
   }
 
   sketchUp(){
-    this.setState({isDrawing:false});
+    this.setState({isDrawing:false,
+    points:[]});
     this.setState({
       cStep:this.state.cStep+1
     });
@@ -140,7 +210,8 @@ class Sketch extends Component{
   }
 
   sketchLeave(){
-    this.setState({isDrawing:false});
+    this.setState({isDrawing:false,
+    points:[]});
   }
 
   undoCanvas(){
@@ -171,14 +242,13 @@ redoCanvas(){
 
 
 uploadSketch(){
-  
+
 }
 
   render(){
     return(
       <canvas className='sheet' ref='canvas' id='canvas' onMouseDown={this.sketchDown} onTouchStart={this.sketchDown}
-        onTouchMove={this.sketchMove}
-      onMouseMove={this.sketchMove} onMouseLeave={this.sketchLeave} onMouseUp={this.sketchUp}>
+      onTouchMove={this.sketchMove} onMouseMove={this.sketchMove} onMouseLeave={this.sketchLeave} onMouseUp={this.sketchUp}>
       </canvas>
     )
   }

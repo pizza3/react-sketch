@@ -5,7 +5,6 @@ import Grid from './Grid.js'
 import { SketchPicker } from 'react-color';
 import {Route, Link} from "react-router-dom";
 import firebase , {auth, provider, provider2} from './firebase.js';
-
 import Raven from 'raven-js';
 
 Raven.config('https://dd96fa0593f0410e98119edc5d677e8c@sentry.io/209342').install()
@@ -18,18 +17,23 @@ class App extends Component {
       grid:true,
       normal:true,
       rainbow:false,
+      stroke:false,
+      strokeNo:"0",
+      strokeName:['Stroke1', 'Stroke2', 'Stroke3', 'Stroke4'],
       undo:false,
       redo:false,
       delete:false,
       user:null,
       save:false
     }
-    this.handleChange=this.handleChange.bind(this);
-    this.openState=this.openState.bind(this);
-    this.openGrid=this.openGrid.bind(this);
-    this.openRainbow=this.openRainbow.bind(this);
-    this.undoState=this.undoState.bind(this);
-    this.redoState=this.redoState.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleStroke = this.handleStroke.bind(this);
+    this.openState = this.openState.bind(this);
+    this.openGrid = this.openGrid.bind(this);
+    this.openRainbow = this.openRainbow.bind(this);
+    this.openStroke = this.openStroke.bind(this);
+    this.undoState = this.undoState.bind(this);
+    this.redoState = this.redoState.bind(this);
     this.loginGoogle = this.loginGoogle.bind(this);
     this.logoutGoogle = this.logoutGoogle.bind(this);
     this.loginFacebook = this.loginFacebook.bind(this);
@@ -42,17 +46,25 @@ handleChange(color) {
   this.setState({colorPass: color.hex, normal: true, rainbow: false});
 }
 
+handleStroke(event){
+  this.setState({
+    strokeNo:event.target.getAttribute("data-no")
+  })
+  console.log(event.target.getAttribute('data-no'));
+}
+
   openState(){
     this.setState({
       open:!this.state.open,
       normal:true,
+      stroke:false,
       rainbow:false
     });
   }
 
   openGrid(){
     this.setState({
-      grid:!this.state.grid
+      grid:!this.state.grid,
     })
   }
 
@@ -62,6 +74,13 @@ handleChange(color) {
       rainbow:true,
       open:false
     })
+  }
+
+  openStroke(){
+    this.setState({
+      stroke:!this.state.stroke,
+      open:false
+    });
   }
 
   undoState(){
@@ -180,10 +199,27 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
+           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
-         <Sketch colorvalue={this.state.colorPass} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
+            {this.state.stroke?
+            <div className='strokePicker'>
+              <ul>
+                <li data-no='0'  onClick={this.handleStroke}>
+                  Stroke1
+                </li>
+                <li data-no='1'  onClick={this.handleStroke}>
+                  Stroke2
+                </li>
+                <li data-no='2'  onClick={this.handleStroke}>
+                  Storke3
+                </li>
+                <li data-no='3'  onClick={this.handleStroke}>
+                  Stroke4
+                </li>
+              </ul>
+            </div>:null}
+         <Sketch colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}
       </div>
     );
