@@ -209,9 +209,7 @@ li:hover{
   margin-top: 7px;
   cursor: pointer;
   transition: .5s;
-  background-image: url('./images/grid.png');
-  background-position: center;
-  background-size: cover;
+
 }
 
 .undo {
@@ -267,29 +265,35 @@ top: 4px;
 
 #trash{
   position: absolute;
-left: 4px;
-top: 4px;
-transform: scale(0.9);
+  left: 4px;
+  top: 4px;
+  transform: scale(0.9);
 }
 
 #save{
   position: absolute;
-left: 4px;
-top: 4px;
-transform: scale(0.9);
+  left: 4px;
+  top: 4px;
+  transform: scale(0.9);
 }
 
 #archive{
   position: absolute;
-   left: 4px;
-   top: 4px;
-
+  left: 4px;
+  top: 4px;
 }
 
 #dropdown{
   position: absolute;
   left:120px;
   top: 5px;
+  transform: scale(0.9);
+}
+
+#grid-btn{
+  position: absolute;
+  left: 4px;
+  top: 4px;
   transform: scale(0.9);
 }
 
@@ -337,7 +341,7 @@ transform: scale(0.9);
   transition: .4s;
 }
 
-#setting{
+#setting-logo{
   position: absolute;
   left: 5px;
   top: 4px;
@@ -373,4 +377,29 @@ transform: scale(0.9);
   left: 225px;
   font-family: 'Montserrat', sans-serif;
   z-index: 100;
+}
+
+.setting-box{
+  position: fixed;
+  z-index: 20;
+  border-left: 1px solid #000;
+  left:100%;
+  width: 30%;
+  height: 100vh;
+  background: #fff;
+  padding-top: 56px;
+  padding-left: 11px;
+  font-family: 'Montserrat', sans-serif;
+  transition: .5s;
+}
+
+.openSetting{
+  left: 70%;
+}
+
+.setting-header{
+  font-weight: 800;
+  font-size: 41px;
+  letter-spacing: 1px;
+  color: #292929;
 }

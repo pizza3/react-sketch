@@ -82,12 +82,6 @@ class Sketch extends Component{
   }
 
   sketchDown(e){
-    if(this.state.normal){
-      this.state.ctx.strokeStyle=this.state.strokeColor;
-    }
-    else {
-      this.state.ctx.strokeStyle='#BADA55';
-    }
     switch (this.state.strokeNo) {
       case "0":
       this.setState({isDrawing:true});
@@ -99,10 +93,12 @@ class Sketch extends Component{
       break;
       case "1":
       this.state.ctx.lineWidth = 1;
-      this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
-      this.setState({
-        points:this.state.points.concat({x: e.clientX, y: e.clientY })
-      })
+    this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
+    this.setState({
+      isDrawing:!this.state.isDrawing,
+      points:this.state.points.concat({x: e.clientX, y: e.clientY })
+    })
+      console.log('working');
       break;
       case "2":
       this.state.ctx.lineWidth = 1;
@@ -128,7 +124,7 @@ class Sketch extends Component{
   sketchMove(e){
     if (this.state.isDrawing) {
       switch (this.state.strokeNo) {
-        case "0":
+      case "0":
         if(this.state.normal){
         this.state.ctx.lineTo(e.clientX , e.clientY - 50);
         this.state.ctx.stroke();
@@ -157,27 +153,30 @@ class Sketch extends Component{
           });
           }
         }
-          break;
+        break;
 
         case "1":
-        this.setState({
-          points:this.state.points.concat({x: e.clientX, y: e.clientY })
-        })
+        this.state.points.push({ x: e.clientX, y: e.clientY-50 });
+
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
         this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
         this.state.ctx.stroke();
-        for (var i = 0; i <this.state.points.length;  i++) {
+        for (var i = 0, len = this.state.points.length; i < len; i++) {
           var dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
           var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           var d = dx * dx + dy * dy;
-          if (d < 1000) {
+
+          if (d < 10000) {
             this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle=this.state.strokeColor;
+            this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.2), this.state.points[this.state.points.length-1].y + (dy * 0.2));
             this.state.ctx.lineTo( this.state.points[i].x - (dx * 0.2), this.state.points[i].y - (dy * 0.2));
             this.state.ctx.stroke();
-          }}
+          }
+        }
+        console.log('moving');
+
           break;
 
         case "2":
@@ -197,6 +196,7 @@ class Sketch extends Component{
   sketchUp(){
     this.setState({isDrawing:false,
     points:[]});
+    this.state.ctx.strokeStyle = this.state.strokeStyle;
     this.setState({
       cStep:this.state.cStep+1
     });

@@ -8,7 +8,12 @@ class Setting extends Component{
 
   render(){
     return(
-      
+      <div id='setting-box' className='setting-box'>
+        <div className='setting-header'>SETTING</div>
+      </div>
     )
   }
 }
+
+
+export default Setting;

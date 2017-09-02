@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar.js'
-import Sketch from './Sketch.js'
-import Grid from './Grid.js'
+import Navbar from './Navbar.js';
+import Sketch from './Sketch.js';
+import Grid from './Grid.js';
+import Setting from './Setting.js';
 import { SketchPicker } from 'react-color';
 import {Route, Link} from "react-router-dom";
 import firebase , {auth, provider, provider2} from './firebase.js';
@@ -19,6 +20,7 @@ class App extends Component {
       rainbow:false,
       stroke:false,
       strokeNo:"0",
+      setting:false,
       strokeName:['Stroke1', 'Stroke2', 'Stroke3', 'Stroke4'],
       undo:false,
       redo:false,
@@ -32,6 +34,7 @@ class App extends Component {
     this.openGrid = this.openGrid.bind(this);
     this.openRainbow = this.openRainbow.bind(this);
     this.openStroke = this.openStroke.bind(this);
+    this.openSetting = this.openSetting.bind(this);
     this.undoState = this.undoState.bind(this);
     this.redoState = this.redoState.bind(this);
     this.loginGoogle = this.loginGoogle.bind(this);
@@ -66,6 +69,18 @@ handleStroke(event){
     this.setState({
       grid:!this.state.grid,
     })
+  }
+
+  openSetting(){
+    this.setState({
+      setting:!this.state.setting
+    });
+    if(this.state.setting){
+      document.getElementById('setting-box').className+= ' openSetting';
+    }
+    else {
+      document.getElementById('setting-box').classList.remove('openSetting');
+    }
   }
 
   openRainbow(){
@@ -190,6 +205,7 @@ logoutFacebook(){
       <div className="App">
         {this.state.grid?
           <Grid/>:null}
+          <Setting/>
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
@@ -199,7 +215,7 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
+           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} openSet={this.openSetting} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
             {this.state.stroke?
