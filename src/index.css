@@ -250,7 +250,7 @@ top: 4px;
   transition: .5s;
 }
 
-.delete, .save, .archive {
+.delete, .save, .archive, .download {
   position: relative;
   float: left;
   width: 35px;
@@ -271,6 +271,13 @@ top: 4px;
 }
 
 #save{
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  transform: scale(0.9);
+}
+
+#download{
   position: absolute;
   left: 4px;
   top: 4px;
@@ -402,4 +409,8 @@ top: 4px;
   font-size: 41px;
   letter-spacing: 1px;
   color: #292929;
+}
+
+#downloader{
+  color: #000;
 }

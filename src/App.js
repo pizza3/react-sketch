@@ -4,7 +4,6 @@ import Sketch from './Sketch.js';
 import Grid from './Grid.js';
 import Setting from './Setting.js';
 import { SketchPicker } from 'react-color';
-import {Route, Link} from "react-router-dom";
 import firebase , {auth, provider, provider2} from './firebase.js';
 import Raven from 'raven-js';
 
@@ -34,6 +33,7 @@ class App extends Component {
     this.openGrid = this.openGrid.bind(this);
     this.openRainbow = this.openRainbow.bind(this);
     this.openStroke = this.openStroke.bind(this);
+    this.downloadImage = this.downloadImage.bind(this);
     this.openSetting = this.openSetting.bind(this);
     this.undoState = this.undoState.bind(this);
     this.redoState = this.redoState.bind(this);
@@ -69,6 +69,12 @@ handleStroke(event){
     this.setState({
       grid:!this.state.grid,
     })
+  }
+
+  downloadImage(){
+    document.getElementById("downloader").download = "sketch.png";
+    document.getElementById("downloader").href = document.getElementById("canvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+
   }
 
   openSetting(){
@@ -170,15 +176,21 @@ logoutFacebook(){
   }
 
   saveCanvas(){
-    this.setState({
-      save:!this.state.save
-    });
-    setTimeout(()=>{
-      this.setState({
-        save:false
-      });
-    },300)
-  }
+    let user  = this.state.user.uid;
+      // var url=window.URL.createObjectURL(blob, {autoRevoke: true});
+      let file = document.getElementById('canvas').toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+      let storageRef= firebase.storage().ref('sketch/'+user+'/'+'image')
+      let task = storageRef.put(file);
+      task.on('state_changed',
+      function progress(snapshot) {
+      },
+      function error(err) {
+
+      },
+      function complete() {
+
+      })
+ }
 
   deleteCanvas(){
     this.setState({
@@ -215,7 +227,7 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} openSet={this.openSetting} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
+           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.saveCanvas} download={this.downloadImage} openSet={this.openSetting} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
             {this.state.stroke?

@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import canvasDpiScaler from 'canvas-dpi-scaler';
-import firebase from './firebase.js';
 
 class Sketch extends Component{
   constructor(props){
@@ -90,11 +89,12 @@ class Sketch extends Component{
       this.state.ctx.lineJoin = 'round';
       this.state.ctx.lineCap = 'round';
       this.state.ctx.beginPath();
+      this.state.ctx.strokeStyle=this.state.strokeColor;
       break;
       case "1":
       this.state.ctx.lineWidth = 1;
-    this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
-    this.setState({
+      this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
+      this.setState({
       isDrawing:!this.state.isDrawing,
       points:this.state.points.concat({x: e.clientX, y: e.clientY })
     })
@@ -104,14 +104,16 @@ class Sketch extends Component{
       this.state.ctx.lineWidth = 1;
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
-        points:this.state.points.concat({x: e.clientX, y: e.clientY })
-      })
+      isDrawing:!this.state.isDrawing,
+      points:this.state.points.concat({x: e.clientX, y: e.clientY })
+    })
       break;
       case "3":
       this.state.ctx.lineWidth = 1;
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
-        points:this.state.points.concat({x: e.clientX, y: e.clientY })
+      isDrawing:!this.state.isDrawing,
+      points:this.state.points.concat({x: e.clientX, y: e.clientY })
       })
       break;
       default:
@@ -175,15 +177,45 @@ class Sketch extends Component{
             this.state.ctx.stroke();
           }
         }
-        console.log('moving');
 
           break;
 
         case "2":
+        this.state.points.push({ x: e.clientX, y: e.clientY });
+        this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
+        this.state.ctx.beginPath();
+        this.state.ctx.moveTo(this.state.points[0].x, this.state.points[0].y);
+        for (var i = 1; i < this.state.points.length; i++) {
+          this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
+          var nearPoint = this.state.points[i-5];
+          if (nearPoint) {
+            this.state.ctx.moveTo(nearPoint.x, nearPoint.y);
+            this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
+          }
+        }
+        this.state.ctx.stroke();
 
           break;
 
         case "3":
+        this.state.points.push({ x: e.clientX, y: e.clientY });
+
+        this.state.ctx.beginPath();
+        this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
+        this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
+        this.state.ctx.stroke();
+        for (var i = 0, len = this.state.points.length; i < len; i++) {
+          dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
+          dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
+          d = dx * dx + dy * dy;
+          if (d < 2000 && Math.random() > d / 2000) {
+            this.state.ctx.beginPath();
+            this.state.ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+            this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.5), this.state.points[this.state.points.length-1].y + (dy * 0.5));
+            this.state.ctx.lineTo( this.state.points[this.state.points.length-1].x - (dx * 0.5), this.state.points[this.state.points.length-1].y - (dy * 0.5));
+            this.state.ctx.stroke();
+          }
+        }
 
           break;
         default:
