@@ -1,5 +1,5 @@
-#SCRAP
+# SCRAP
 
-#DEMO: coming soon!!
+### DEMO: coming soon!!
 
 ![screenshot](/src/images/visual.png)
