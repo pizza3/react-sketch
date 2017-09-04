@@ -386,7 +386,7 @@ top: 4px;
   z-index: 100;
 }
 
-.setting-box{
+.setting-box,.archive-box{
   position: fixed;
   z-index: 20;
   border-left: 1px solid #000;
@@ -400,16 +400,18 @@ top: 4px;
   transition: .5s;
 }
 
-.openSetting{
+.openSetting, .openArchive{
   left: 70%;
 }
 
-.setting-header{
+.setting-header,.archive-header{
   font-weight: 800;
   font-size: 41px;
   letter-spacing: 1px;
   color: #292929;
 }
+
+
 
 #downloader{
   color: #000;

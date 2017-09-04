@@ -13,7 +13,7 @@ class Sketch extends Component{
       canvas:null,
       width:null,
       height:null,
-      hue:0,
+      hue:200,
       points:[],
       cPushArray:[],
       cStep:-1,
@@ -30,7 +30,6 @@ class Sketch extends Component{
     this.sketchMove = this.sketchMove.bind(this);
     this.undoCanvas = this.undoCanvas.bind(this);
     this.redoCanvas = this.redoCanvas.bind(this);
-    this.uploadSketch = this.uploadSketch.bind(this);
   }
 
   componentDidMount(){
@@ -171,7 +170,15 @@ class Sketch extends Component{
 
           if (d < 10000) {
             this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
+            this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
+            this.setState({
+              hue:this.state.hue+1
+            });
+            if (this.state.hue >= 250) {
+              this.setState({
+                hue:200
+              });
+              }
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.2), this.state.points[this.state.points.length-1].y + (dy * 0.2));
             this.state.ctx.lineTo( this.state.points[i].x - (dx * 0.2), this.state.points[i].y - (dy * 0.2));
             this.state.ctx.stroke();
@@ -210,7 +217,7 @@ class Sketch extends Component{
           d = dx * dx + dy * dy;
           if (d < 2000 && Math.random() > d / 2000) {
             this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+            this.state.ctx.strokeStyle = 'rgba(0,0,0,0.1)';
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.5), this.state.points[this.state.points.length-1].y + (dy * 0.5));
             this.state.ctx.lineTo( this.state.points[this.state.points.length-1].x - (dx * 0.5), this.state.points[this.state.points.length-1].y - (dy * 0.5));
             this.state.ctx.stroke();
@@ -272,10 +279,6 @@ redoCanvas(){
   }
 }
 
-
-uploadSketch(){
-
-}
 
   render(){
     return(

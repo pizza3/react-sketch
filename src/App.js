@@ -3,6 +3,7 @@ import Navbar from './Navbar.js';
 import Sketch from './Sketch.js';
 import Grid from './Grid.js';
 import Setting from './Setting.js';
+import Archive from './Archive.js';
 import { SketchPicker } from 'react-color';
 import firebase , {auth, provider, provider2} from './firebase.js';
 import Raven from 'raven-js';
@@ -20,6 +21,7 @@ class App extends Component {
       stroke:false,
       strokeNo:"0",
       setting:false,
+      archive:false,
       strokeName:['Stroke1', 'Stroke2', 'Stroke3', 'Stroke4'],
       undo:false,
       redo:false,
@@ -43,6 +45,7 @@ class App extends Component {
     this.logoutFacebook = this.logoutFacebook.bind(this);
     this.deleteCanvas = this.deleteCanvas.bind(this);
     this.saveCanvas = this.saveCanvas.bind(this);
+    this.openArchive=this.openArchive.bind(this);
 
   }
 handleChange(color) {
@@ -86,6 +89,18 @@ handleStroke(event){
     }
     else {
       document.getElementById('setting-box').classList.remove('openSetting');
+    }
+  }
+
+  openArchive(){
+    this.setState({
+      archive:!this.state.archive
+    });
+    if(this.state.archive){
+      document.getElementById('archive-box').className+= ' openArchive';
+    }
+    else {
+      document.getElementById('archive-box').classList.remove('openArchive');
     }
   }
 
@@ -178,14 +193,13 @@ logoutFacebook(){
   saveCanvas(){
     let user  = this.state.user.uid;
       // var url=window.URL.createObjectURL(blob, {autoRevoke: true});
-      let file = document.getElementById('canvas').toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+      let file = document.getElementById('canvas').toDataURL("image/png");
       let storageRef= firebase.storage().ref('sketch/'+user+'/'+'image')
-      let task = storageRef.put(file);
+      let task = storageRef.putString(file);
       task.on('state_changed',
       function progress(snapshot) {
       },
       function error(err) {
-
       },
       function complete() {
 
@@ -218,6 +232,7 @@ logoutFacebook(){
         {this.state.grid?
           <Grid/>:null}
           <Setting/>
+          {/* <Archive user={this.state.user}/> */}
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
@@ -227,7 +242,8 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.saveCanvas} download={this.downloadImage} openSet={this.openSetting} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
+           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.saveCanvas} download={this.downloadImage}
+             openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
             {this.state.stroke?
