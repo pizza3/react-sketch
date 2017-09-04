@@ -8,6 +8,16 @@
   user-select: none;
 }
 
+::-moz-selection {
+  color: #fff;
+  background: #3300ff;
+}
+
+::selection {
+  color: #fff;
+  background: #3300ff;
+}
+
 .head {
   font-family: 'Montserrat', sans-serif;
   font-size: 86px;
@@ -24,7 +34,7 @@
   z-index: 20;
 }
 
-.slogan{
+.slogan {
   font-family: 'Roboto', sans-serif;
   font-size: 27px;
   font-weight: 200;
@@ -37,7 +47,6 @@
   text-align: center;
   color: #4688f1;
   z-index: 20;
-
 }
 
 .google-signin {
@@ -82,7 +91,6 @@
   transform: scale(.5);
   transition: .4s;
 }
-
 
 .navigation {
   position: absolute;
@@ -140,7 +148,7 @@
   transition: .5s;
 }
 
-.stroke-Box{
+.stroke-Box {
   position: relative;
   float: left;
   width: 151px;
@@ -161,40 +169,42 @@
   color: #4688f1;
 }
 
-.strokePicker{
+.strokePicker {
   position: absolute;
-width: 247px;
-height: 262px;
-border-radius: 4px;
-z-index: 100;
-top: 53px;
-left: 277px;
-background: #fff;
-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
+  width: 247px;
+  height: 262px;
+  border-radius: 4px;
+  z-index: 100;
+  top: 53px;
+  left: 277px;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
 }
-ul{
+
+ul {
   width: 100%;
   height: 100%;
 }
 
-li{
+li {
   display: block;
-width: 100%;
-position: relative;
-height: 25%;
-border: 1px solid #dedede;
-color:#7b7b7b;
-border-top: none;
-border-left: none;
-border-right: none;
-font-weight: 100;
-padding-top: 22px;
-padding-left: 13px;
-font-family: 'Roboto', sans-serif;
-cursor: pointer;
-transition: .5s;
+  width: 100%;
+  position: relative;
+  height: 25%;
+  border: 1px solid #dedede;
+  color: #7b7b7b;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-weight: 100;
+  padding-top: 22px;
+  padding-left: 13px;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: .5s;
 }
-li:hover{
+
+li:hover {
   color: #4688f1;
 }
 
@@ -209,7 +219,6 @@ li:hover{
   margin-top: 7px;
   cursor: pointer;
   transition: .5s;
-
 }
 
 .undo {
@@ -227,14 +236,14 @@ li:hover{
 
 #undo {
   position: absolute;
-left: 3px;
-top: 4px;
+  left: 3px;
+  top: 4px;
 }
 
 #redo {
   position: absolute;
-left: 5px;
-top: 4px;
+  left: 5px;
+  top: 4px;
 }
 
 .redo {
@@ -263,41 +272,41 @@ top: 4px;
   transition: .5s;
 }
 
-#trash{
+#trash {
   position: absolute;
   left: 4px;
   top: 4px;
   transform: scale(0.9);
 }
 
-#save{
+#save {
   position: absolute;
   left: 4px;
   top: 4px;
   transform: scale(0.9);
 }
 
-#download{
+#download {
   position: absolute;
   left: 4px;
   top: 4px;
   transform: scale(0.9);
 }
 
-#archive{
+#archive {
   position: absolute;
   left: 4px;
   top: 4px;
 }
 
-#dropdown{
+#dropdown {
   position: absolute;
-  left:120px;
+  left: 120px;
   top: 5px;
   transform: scale(0.9);
 }
 
-#grid-btn{
+#grid-btn {
   position: absolute;
   left: 4px;
   top: 4px;
@@ -335,7 +344,7 @@ top: 4px;
   transition: .4s;
 }
 
-.setting{
+.setting {
   position: relative;
   float: right;
   width: 35px;
@@ -348,14 +357,14 @@ top: 4px;
   transition: .4s;
 }
 
-#setting-logo{
+#setting-logo {
   position: absolute;
   left: 5px;
   top: 4px;
   transform: scale(0.9);
 }
 
-#logout{
+#logout {
   position: absolute;
   left: 6px;
   top: 4px;
@@ -386,33 +395,112 @@ top: 4px;
   z-index: 100;
 }
 
-.setting-box,.archive-box{
+.setting-box, .archive-box {
+  overflow: scroll;
   position: fixed;
   z-index: 20;
   border-left: 1px solid #000;
-  left:100%;
+  left: 100%;
   width: 30%;
   height: 100vh;
   background: #fff;
   padding-top: 56px;
   padding-left: 11px;
   font-family: 'Montserrat', sans-serif;
-  transition: .5s;
+  transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-.openSetting, .openArchive{
+.openSetting, .openArchive {
   left: 70%;
 }
 
-.setting-header,.archive-header{
+.setting-header, .archive-header {
   font-weight: 800;
   font-size: 41px;
   letter-spacing: 1px;
   color: #292929;
 }
 
+.setting-stroke1 {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: #71a4f4;
+  font-size: 25px;
+  letter-spacing: 4px;
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
 
+.strokeWidth, .strokeOpacity {
+  position: relative;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: #828282;
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-top: 13px;
+  margin-left: 11px;
+}
 
-#downloader{
+.option {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+
+#number, #opacity {
+  position: relative;
+  display: inline-block;
+  float: right;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  width: 61px;
+  height: 24px;
+  border: 1px solid #dedede;
+  padding-top: 1px;
+  padding-left: 9px;
+  margin-right: 32px;
+  margin-top: 10px;
+}
+
+#number:focus {
+  outline: none;
+  border-color: #71a4f4;
+}
+
+#opacity:focus {
+  outline: none;
+  border-color: #71a4f4;
+}
+
+#downloader {
   color: #000;
+}
+
+.erase-modal {
+  position: fixed;
+  z-index: 100;
+  width: 412px;
+  height: 265px;
+  background: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
+  border-radius: 7px;
+  margin-top: 61px;
+}
+
+.erase-header{
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: #71a4f4;
+  font-size: 25px;
+  letter-spacing: 4px;
+  margin-top: 22px;
+  margin-bottom: 8px;
 }

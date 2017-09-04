@@ -4,6 +4,7 @@ import Sketch from './Sketch.js';
 import Grid from './Grid.js';
 import Setting from './Setting.js';
 import Archive from './Archive.js';
+import Erase from './Erase.js';
 import { SketchPicker } from 'react-color';
 import firebase , {auth, provider, provider2} from './firebase.js';
 import Raven from 'raven-js';
@@ -232,6 +233,7 @@ logoutFacebook(){
         {this.state.grid?
           <Grid/>:null}
           <Setting/>
+          <Erase/>
           {/* <Archive user={this.state.user}/> */}
         {this.state.user==null?
           <div>
@@ -250,16 +252,16 @@ logoutFacebook(){
             <div className='strokePicker'>
               <ul>
                 <li data-no='0'  onClick={this.handleStroke}>
-                  Stroke1
+                  NORMAL
                 </li>
                 <li data-no='1'  onClick={this.handleStroke}>
-                  Stroke2
+                  NEIGHBOR BASED
                 </li>
                 <li data-no='2'  onClick={this.handleStroke}>
-                  Storke3
+                  POINT BASED
                 </li>
                 <li data-no='3'  onClick={this.handleStroke}>
-                  Stroke4
+                  FUR
                 </li>
               </ul>
             </div>:null}
