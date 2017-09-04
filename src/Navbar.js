@@ -28,9 +28,9 @@ class Navbar extends Component{
         <div className='logo' id='logo'>
           SCRAP
         </div>
-        <div className='rainbow' onClick={this.props.rainbow}></div>
+        <div className='rainbow' onClick={this.props.rainbow}><span id='rainbow-span' className='rainbow-span'></span></div>
 
-        <div className='pick' onClick={this.props.action}  style={back}></div>
+        <div className='pick' onClick={this.props.action}  style={back}><span id='pick-span' className='pick-span active'></span></div>
         <div className='stroke-Box' onClick={this.props.chngStroke}>
           {this.state.stroke}
           <svg id='dropdown' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >

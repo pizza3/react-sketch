@@ -88,10 +88,11 @@ class Sketch extends Component{
       this.state.ctx.lineJoin = 'round';
       this.state.ctx.lineCap = 'round';
       this.state.ctx.beginPath();
-      this.state.ctx.strokeStyle=this.state.strokeColor;
+      this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       break;
       case "1":
       this.state.ctx.lineWidth = 1;
+      this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
       isDrawing:!this.state.isDrawing,
@@ -101,6 +102,7 @@ class Sketch extends Component{
       break;
       case "2":
       this.state.ctx.lineWidth = 1;
+      this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
       isDrawing:!this.state.isDrawing,
@@ -109,6 +111,7 @@ class Sketch extends Component{
       break;
       case "3":
       this.state.ctx.lineWidth = 1;
+      this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
       isDrawing:!this.state.isDrawing,
@@ -134,8 +137,7 @@ class Sketch extends Component{
           this.state.ctx.fillStyle = this.state.color;
           this.state.ctx.beginPath();
           this.state.ctx.moveTo(e.clientX , e.clientY - 50);
-          this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
-
+          this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
         }
 
       else{
@@ -160,6 +162,7 @@ class Sketch extends Component{
 
         case "1":
         if(this.state.normal){
+          this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
           this.state.points.push({ x: e.clientX, y: e.clientY-50 });
           this.state.ctx.beginPath();
           this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
@@ -172,7 +175,6 @@ class Sketch extends Component{
 
             if (d < 10000) {
               this.state.ctx.beginPath();
-              this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
               this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.2), this.state.points[this.state.points.length-1].y + (dy * 0.2));
               this.state.ctx.lineTo( this.state.points[i].x - (dx * 0.2), this.state.points[i].y - (dy * 0.2));
               this.state.ctx.stroke();
@@ -182,7 +184,6 @@ class Sketch extends Component{
         else {
 
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
-
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
         this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
@@ -215,7 +216,7 @@ class Sketch extends Component{
         case "2":
         if(this.state.normal){
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
-        this.state.ctx.strokeStyle = 'rgba(0,280,200,0.1)';
+        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[0].x, this.state.points[0].y);
         for (var i = 1; i < this.state.points.length; i++) {
@@ -257,6 +258,7 @@ class Sketch extends Component{
 
         case "3":
         if(this.state.normal){
+        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
@@ -268,7 +270,6 @@ class Sketch extends Component{
           d = dx * dx + dy * dy;
           if (d < 2000 && Math.random() > d / 2000) {
             this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle = 'rgba(0,0,0,0.1)';
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.5), this.state.points[this.state.points.length-1].y + (dy * 0.5));
             this.state.ctx.lineTo( this.state.points[this.state.points.length-1].x - (dx * 0.5), this.state.points[this.state.points.length-1].y - (dy * 0.5));
             this.state.ctx.stroke();

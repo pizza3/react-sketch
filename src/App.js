@@ -23,12 +23,13 @@ class App extends Component {
       strokeNo:"0",
       setting:false,
       archive:false,
-      strokeName:['Stroke1', 'Stroke2', 'Stroke3', 'Stroke4'],
+      strokeName:['NORMAL', 'NEIGHBOR BASED', 'POINT BASED', 'FUR'],
       undo:false,
       redo:false,
       delete:false,
       user:null,
-      save:false
+      save:false,
+      showerasemodal:false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleStroke = this.handleStroke.bind(this);
@@ -47,10 +48,11 @@ class App extends Component {
     this.deleteCanvas = this.deleteCanvas.bind(this);
     this.saveCanvas = this.saveCanvas.bind(this);
     this.openArchive=this.openArchive.bind(this);
-
+    this.showerasemodal=this.showerasemodal.bind(this);
   }
 handleChange(color) {
-  this.setState({colorPass: color.hex, normal: true, rainbow: false});
+  this.setState({colorPass: color.rgb, normal: true, rainbow: false});
+
 }
 
 handleStroke(event){
@@ -67,6 +69,8 @@ handleStroke(event){
       stroke:false,
       rainbow:false
     });
+    document.getElementById('pick-span').className+=' active';
+    document.getElementById('rainbow-span').classList.remove('active')
   }
 
   openGrid(){
@@ -111,6 +115,8 @@ handleStroke(event){
       rainbow:true,
       open:false
     })
+    document.getElementById('rainbow-span').className+=' active';
+    document.getElementById('pick-span').classList.remove('active')
   }
 
   openStroke(){
@@ -209,13 +215,20 @@ logoutFacebook(){
 
   deleteCanvas(){
     this.setState({
-      delete:!this.state.delete
+      delete:!this.state.delete,
+      showerasemodal:false
     });
     setTimeout(()=>{
       this.setState({
         delete:false
       });
     },300)
+  }
+
+  showerasemodal(){
+    this.setState({
+      showerasemodal:!this.state.showerasemodal
+    })
   }
 
   componentDidMount(){
@@ -233,7 +246,8 @@ logoutFacebook(){
         {this.state.grid?
           <Grid/>:null}
           <Setting/>
-          <Erase/>
+          {this.state.showerasemodal?
+          <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>:null}
           {/* <Archive user={this.state.user}/> */}
         {this.state.user==null?
           <div>
@@ -245,7 +259,7 @@ logoutFacebook(){
           {this.state.user?
             <div>
            <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.saveCanvas} download={this.downloadImage}
-             openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.deleteCanvas} />
+             openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.showerasemodal} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
             {this.state.stroke?
@@ -265,7 +279,7 @@ logoutFacebook(){
                 </li>
               </ul>
             </div>:null}
-         <Sketch colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
+         <Sketch onClick={this.openRainbow} colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}
       </div>
     );
