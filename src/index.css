@@ -230,12 +230,20 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
   cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
   transition: .5s;
+}
+
+
+.grid-btn:hover{
+  border-radius: 33%;
+
 }
 
 .undo {
@@ -243,24 +251,34 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
   cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
   transition: .5s;
+}
+
+.undo:hover{
+  border-radius: 33%;
+
 }
 
 #undo {
   position: absolute;
   left: 3px;
   top: 4px;
+  stroke: #71a4f4;
 }
 
 #redo {
   position: absolute;
   left: 5px;
   top: 4px;
+  stroke: #71a4f4;
+
 }
 
 .redo {
@@ -268,12 +286,19 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
   cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
   transition: .5s;
+}
+
+.redo:hover{
+  border-radius: 33%;
+
 }
 
 .delete, .save, .archive, .download {
@@ -281,12 +306,33 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
   cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
   transition: .5s;
+}
+
+.delete:hover{
+  border-radius: 33%;
+
+}
+
+.save:hover{
+  border-radius: 33%;
+
+}
+
+.archive:hover{
+  border-radius: 33%;
+
+}
+
+.download:hover{
+  border-radius: 33%;
 }
 
 #trash {
@@ -294,6 +340,8 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
+  stroke: #71a4f4;
+
 }
 
 #save {
@@ -301,12 +349,16 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
+  stroke: #71a4f4;
+
 }
 
 #download {
   position: absolute;
   left: 4px;
   top: 4px;
+  stroke: #71a4f4;
+
   transform: scale(0.9);
 }
 
@@ -314,6 +366,8 @@ li:hover {
   position: absolute;
   left: 4px;
   top: 4px;
+  stroke: #71a4f4;
+
 }
 
 #dropdown {
@@ -328,6 +382,8 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
+  stroke: #71a4f4;
+
 }
 
 .profile {
@@ -335,11 +391,12 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  /*border: 1px solid #292929;*/
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
   cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
   transition: .5s;
 }
 
@@ -353,12 +410,19 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
-  border-radius: 50%;
   cursor: pointer;
-  transition: .4s;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.logout:hover{
+  border-radius: 33%;
+
 }
 
 .setting {
@@ -366,12 +430,19 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #292929;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
-  border-radius: 50%;
   cursor: pointer;
-  transition: .4s;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.setting:hover{
+  border-radius: 33%;
+
 }
 
 #setting-logo {
@@ -379,6 +450,8 @@ li:hover {
   left: 5px;
   top: 4px;
   transform: scale(0.9);
+  stroke: #71a4f4;
+
 }
 
 #logout {
@@ -386,6 +459,8 @@ li:hover {
   left: 6px;
   top: 4px;
   transform: scale(0.9);
+  stroke: #71a4f4;
+
 }
 
 .sheet {
@@ -394,7 +469,7 @@ li:hover {
   top: 50px;
   width: 100%;
   height: 100vh;
-  cursor: cell;
+  cursor: crosshair;
 }
 
 .grid {
@@ -496,7 +571,7 @@ li:hover {
   color: #000;
 }
 
-.erase-modal {
+.erase-modal, .save-modal {
   position: fixed;
   z-index: 100;
   width: 412px;
@@ -524,7 +599,7 @@ li:hover {
 }
 
 
-.erase-yes{
+.erase-yes,.save-button{
   border: 1px solid;
   width: 105px;
   float: left;
@@ -540,10 +615,24 @@ li:hover {
 
 }
 
+.save-button{
+  margin-left: 10%;
+}
+
+.save-button:focus{
+  outline: none;
+}
+
 .erase-yes:hover{
   background: #fff;
   color: #71a4f4;
 }
+
+.save-button:hover{
+  background: #fff;
+  color: #71a4f4;
+}
+
 
 .erase-yes:focus{
   outline: none;
@@ -574,4 +663,39 @@ li:hover {
 .erase-no:focus{
   outline: none;
 
+}
+
+#save-modal-name{
+  border: 1px solid #828282;
+  position: relative;
+  width: 80%;
+  height: 34px;
+  border-radius: 3px;
+  margin-left: 10%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: #828282;
+  padding-left: 10px;
+}
+
+#save-modal-name:focus{
+  outline: none;
+
+}
+
+.save-name{
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #828282;
+  font-size: 29px;
+  margin-left: 9%;
+  margin-top: 23px;
+
+}
+
+progress{
+  position: relative;
+width: 80%;
+margin-left: 10%
 }

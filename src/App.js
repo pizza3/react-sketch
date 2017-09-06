@@ -5,6 +5,7 @@ import Grid from './Grid.js';
 import Setting from './Setting.js';
 import Archive from './Archive.js';
 import Erase from './Erase.js';
+import Save from './Save.js';
 import { SketchPicker } from 'react-color';
 import firebase , {auth, provider, provider2} from './firebase.js';
 import Raven from 'raven-js';
@@ -21,6 +22,7 @@ class App extends Component {
       rainbow:false,
       stroke:false,
       strokeNo:"0",
+      textInput:'',
       setting:false,
       archive:false,
       strokeName:['NORMAL', 'NEIGHBOR BASED', 'POINT BASED', 'FUR'],
@@ -29,9 +31,11 @@ class App extends Component {
       delete:false,
       user:null,
       save:false,
-      showerasemodal:false
+      showerasemodal:false,
+      showsavemodal:false,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.namehandleChange = this.namehandleChange.bind(this);
     this.handleStroke = this.handleStroke.bind(this);
     this.openState = this.openState.bind(this);
     this.openGrid = this.openGrid.bind(this);
@@ -49,6 +53,7 @@ class App extends Component {
     this.saveCanvas = this.saveCanvas.bind(this);
     this.openArchive=this.openArchive.bind(this);
     this.showerasemodal=this.showerasemodal.bind(this);
+    this.showsavemodal=this.showsavemodal.bind(this);
   }
 handleChange(color) {
   this.setState({colorPass: color.rgb, normal: true, rainbow: false});
@@ -201,10 +206,12 @@ logoutFacebook(){
     let user  = this.state.user.uid;
       // var url=window.URL.createObjectURL(blob, {autoRevoke: true});
       let file = document.getElementById('canvas').toDataURL("image/png");
-      let storageRef= firebase.storage().ref('sketch/'+user+'/'+'image')
+      let storageRef= firebase.storage().ref('sketch/'+user+'/'+this.state.textInput)
       let task = storageRef.putString(file);
       task.on('state_changed',
       function progress(snapshot) {
+        let per = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+        document.getElementById('progress').value=per
       },
       function error(err) {
       },
@@ -231,6 +238,19 @@ logoutFacebook(){
     })
   }
 
+  showsavemodal(){
+    this.setState({
+      showsavemodal:!this.state.showsavemodal
+    })
+  }
+
+  namehandleChange(e){
+    this.setState({
+      textInput:e.target.value
+    })
+  }
+
+
   componentDidMount(){
     auth.onAuthStateChanged((user)=>{
       if(user){
@@ -246,6 +266,8 @@ logoutFacebook(){
         {this.state.grid?
           <Grid/>:null}
           <Setting/>
+          {this.state.showsavemodal?
+          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>:null}
           {this.state.showerasemodal?
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>:null}
           {/* <Archive user={this.state.user}/> */}
@@ -258,7 +280,7 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.saveCanvas} download={this.downloadImage}
+           <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.showsavemodal} download={this.downloadImage}
              openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.showerasemodal} />
            { this.state.open?
             <SketchPicker color='#292929' onChange={this.handleChange }  />:null }

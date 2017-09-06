@@ -83,7 +83,7 @@ class Sketch extends Component{
     switch (this.state.strokeNo) {
       case "0":
       this.setState({isDrawing:true});
-      this.state.ctx.lineWidth = 40;
+      this.state.ctx.lineWidth = 1;
       this.state.ctx.shadowBlur = 10;
       this.state.ctx.lineJoin = 'round';
       this.state.ctx.lineCap = 'round';
@@ -193,7 +193,7 @@ class Sketch extends Component{
           var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           var d = dx * dx + dy * dy;
 
-          if (d < 10000) {
+          if (d < 1000) {
             this.state.ctx.beginPath();
             this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
             this.setState({
