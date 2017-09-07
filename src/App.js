@@ -206,7 +206,8 @@ logoutFacebook(){
     let user  = this.state.user.uid;
       // var url=window.URL.createObjectURL(blob, {autoRevoke: true});
       let file = document.getElementById('canvas').toDataURL("image/png");
-      let storageRef= firebase.storage().ref('sketch/'+user+'/'+this.state.textInput)
+      let inp = this.state.textInput
+      let storageRef= firebase.storage().ref('sketch/'+user+'/'+inp)
       let task = storageRef.putString(file);
       task.on('state_changed',
       function progress(snapshot) {
@@ -216,9 +217,17 @@ logoutFacebook(){
       function error(err) {
       },
       function complete() {
-
+        storageRef.getDownloadURL().then(function(url) {
+          console.log(url);
+          const itemsRef = firebase.database().ref(user);
+          const item = {
+            name:inp,
+            url: url
+          }
+          itemsRef.push(item);
+        });
       })
- }
+    }
 
   deleteCanvas(){
     this.setState({
@@ -270,7 +279,7 @@ logoutFacebook(){
           <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>:null}
           {this.state.showerasemodal?
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>:null}
-          {/* <Archive user={this.state.user}/> */}
+          <Archive user={this.state.user}/>
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
