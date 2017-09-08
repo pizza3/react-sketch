@@ -33,7 +33,12 @@ class App extends Component {
       save:false,
       showerasemodal:false,
       showsavemodal:false,
-      images:[]
+      images:[],
+      stroke1:{
+        strokeWidth:1,
+        strokeOpacity:1,
+        strokeHue:1,
+      }
     }
     this.handleChange = this.handleChange.bind(this);
     this.namehandleChange = this.namehandleChange.bind(this);
@@ -52,10 +57,12 @@ class App extends Component {
     this.logoutFacebook = this.logoutFacebook.bind(this);
     this.deleteCanvas = this.deleteCanvas.bind(this);
     this.saveCanvas = this.saveCanvas.bind(this);
-    this.openArchive=this.openArchive.bind(this);
-    this.showerasemodal=this.showerasemodal.bind(this);
-    this.showsavemodal=this.showsavemodal.bind(this);
+    this.openArchive = this.openArchive.bind(this);
+    this.showerasemodal = this.showerasemodal.bind(this);
+    this.showsavemodal = this.showsavemodal.bind(this);
   }
+
+
 handleChange(color) {
   this.setState({colorPass: color.rgb, normal: true, rainbow: false});
 
@@ -67,6 +74,8 @@ handleStroke(event){
   })
   console.log(event.target.getAttribute('data-no'));
 }
+
+
 
   openState(){
     this.setState({
@@ -94,25 +103,32 @@ handleStroke(event){
   openSetting(){
     this.setState({
       setting:!this.state.setting
-    });
-    if(this.state.setting){
-      document.getElementById('setting-box').className+= ' openSetting';
+    },
+    function () {
+      if(this.state.setting){
+        document.getElementById('setting-box').className+= ' openSetting';
+      }
+      else {
+        document.getElementById('setting-box').classList.remove('openSetting');
+      }
     }
-    else {
-      document.getElementById('setting-box').classList.remove('openSetting');
-    }
+  );
   }
 
   openArchive(){
     this.setState({
       archive:!this.state.archive
-    });
-    if(this.state.archive){
-      document.getElementById('archive-box').className+= ' openArchive';
+    },
+    function () {
+      if(this.state.archive){
+        document.getElementById('archive-box').className+= ' openArchive';
+      }
+      else {
+        document.getElementById('archive-box').classList.remove('openArchive');
+      }
     }
-    else {
-      document.getElementById('archive-box').classList.remove('openArchive');
-    }
+  );
+
   }
 
   openRainbow(){
@@ -140,7 +156,7 @@ handleStroke(event){
       this.setState({
         undo:false
       });
-    },300)
+    },100)
   }
 
   redoState(){
@@ -151,7 +167,7 @@ handleStroke(event){
       this.setState({
         redo:false
       });
-    },300)
+    },100)
   }
 
   loginGoogle(){
@@ -333,6 +349,7 @@ logoutFacebook(){
                 </li>
               </ul>
             </div>:null}
+          <div className='filter'></div>
          <Sketch onClick={this.openRainbow} colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}
       </div>

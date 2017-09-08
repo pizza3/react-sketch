@@ -92,13 +92,12 @@ class Sketch extends Component{
       break;
       case "1":
       this.state.ctx.lineWidth = 1;
-      this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
+      // this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
       isDrawing:!this.state.isDrawing,
       points:this.state.points.concat({x: e.clientX, y: e.clientY })
     })
-      console.log('working');
       break;
       case "2":
       this.state.ctx.lineWidth = 1;
@@ -343,15 +342,20 @@ class Sketch extends Component{
   }
 
   undoCanvas(){
+    // if(this.state.cStep==this.state.cPushArray.length)
     if(this.state.cStep>=0){
       this.setState({
         cStep:this.state.cStep-1
-      });
-      let canvasPic = new Image();
-      canvasPic.src= this.state.cPushArray[this.state.cStep];
-      canvasPic.onload=()=> {
-        this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
+      },
+      function () {
+        let canvasPic = new Image();
+        canvasPic.src= this.state.cPushArray[this.state.cStep];
+        canvasPic.onload=()=> {
+          this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
+        }
       }
+    );
+
     }
   }
 
@@ -359,12 +363,15 @@ redoCanvas(){
   if(this.state.cStep<=this.state.cPushArray.length-1){
     this.setState({
       cStep:this.state.cStep+1
-    });
+    },
+  function () {
     let canvasPic = new Image();
     canvasPic.src= this.state.cPushArray[this.state.cStep];
     canvasPic.onload=()=> {
       this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
     }
+  });
+
   }
 }
 

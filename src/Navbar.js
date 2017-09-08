@@ -17,6 +17,16 @@ class Navbar extends Component{
     });
   }
 
+  // componentDidMount(newProps){
+  //   this.setState({
+  //     color:newProps.colorvalue,
+  //     user:newProps.user.photoURL,
+  //     stroke:newProps.strokevalue
+  //   });
+  // }
+
+  
+
 
   render(){
     let back={
@@ -32,7 +42,7 @@ class Navbar extends Component{
 
         <div className='pick' onClick={this.props.action}  style={back}><span id='pick-span' className='pick-span active'></span></div>
         <div className='stroke-Box' onClick={this.props.chngStroke}>
-          {this.state.stroke}
+          {this.props.strokevalue}
           <svg id='dropdown' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
@@ -88,7 +98,7 @@ class Navbar extends Component{
         </div>
       </a>
         <div className='profile'>
-          <img src={this.state.user} />
+          <img src={this.props.user.photoURL} />
         </div>
         <div className='logout' onClick={this.props.userOut}>
           <svg id='logout' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
