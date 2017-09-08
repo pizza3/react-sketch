@@ -162,7 +162,7 @@ class Sketch extends Component{
 
         case "1":
         if(this.state.normal){
-          this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
+          this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',0.1)';
           this.state.points.push({ x: e.clientX, y: e.clientY-50 });
           this.state.ctx.beginPath();
           this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
@@ -173,8 +173,11 @@ class Sketch extends Component{
             var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
             var d = dx * dx + dy * dy;
 
-            if (d < 10000) {
+            if (d < 1000) {
+
               this.state.ctx.beginPath();
+              this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',0.1)';
+
               this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.2), this.state.points[this.state.points.length-1].y + (dy * 0.2));
               this.state.ctx.lineTo( this.state.points[i].x - (dx * 0.2), this.state.points[i].y - (dy * 0.2));
               this.state.ctx.stroke();
@@ -193,7 +196,7 @@ class Sketch extends Component{
           var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           var d = dx * dx + dy * dy;
 
-          if (d < 1000) {
+          if (d < 10000) {
             this.state.ctx.beginPath();
             this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
             this.setState({
@@ -320,6 +323,12 @@ class Sketch extends Component{
       cStep:this.state.cStep+1
     });
     if(this.state.cStep<this.state.cPushArray.length){
+      // let ne = [];
+      // ne=this.state.cPushArray;
+      // ne.length = this.state.cStep;
+      // this.setState({
+      //   newArr:ne
+      // })
     }
     let newArr =  this.state.cPushArray.slice();
     newArr.push(this.state.canvas.toDataURL());
@@ -334,20 +343,20 @@ class Sketch extends Component{
   }
 
   undoCanvas(){
-    if(this.state.cStep>0){
+    if(this.state.cStep>=0){
       this.setState({
         cStep:this.state.cStep-1
       });
       let canvasPic = new Image();
       canvasPic.src= this.state.cPushArray[this.state.cStep];
       canvasPic.onload=()=> {
-      this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
+        this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
+      }
     }
   }
-}
 
 redoCanvas(){
-  if(this.state.cStep<this.state.cPushArray.length-1){
+  if(this.state.cStep<=this.state.cPushArray.length-1){
     this.setState({
       cStep:this.state.cStep+1
     });

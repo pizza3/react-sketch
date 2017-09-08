@@ -33,6 +33,7 @@ class App extends Component {
       save:false,
       showerasemodal:false,
       showsavemodal:false,
+      images:[]
     }
     this.handleChange = this.handleChange.bind(this);
     this.namehandleChange = this.namehandleChange.bind(this);
@@ -261,11 +262,33 @@ logoutFacebook(){
 
 
   componentDidMount(){
+
+
     auth.onAuthStateChanged((user)=>{
       if(user){
         this.setState({user});
       }
     });
+
+    // let user  = this.state.user;
+    // let userid  = this.state.user.uid;
+    // const itemsRef = firebase.database().ref(`${userid}`);
+    // itemsRef.on('value', (snapshot)=>{
+    //   let items = snapshot.val();
+    //   let images=[];
+    //   for(let item in items){
+    //     console.log(items[item].url)
+    //     images.push({
+    //       id:items,
+    //       name:items[item].name,
+    //       url:items[item].url
+    //     })
+    //   }
+    //   this.setState({
+    //     images:images
+    //   })
+    // })
+
   }
 
 

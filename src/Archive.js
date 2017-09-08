@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
-import firebase , {auth, provider, provider2} from './firebase.js';
+import firebase from './firebase.js';
 
 
 class Archive extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state={
       images:[],
       user:null
@@ -17,7 +17,7 @@ class Archive extends Component{
     });
   }
 
-  componentDidMount(){
+  componentWillMount(){
     console.log('mount');
     let user  = this.state.user;
     const itemsRef = firebase.database().ref(`${user}`);
@@ -25,8 +25,9 @@ class Archive extends Component{
       let items = snapshot.val();
       let images=[];
       for(let item in items){
+        console.log(items[item].url)
         images.push({
-          id:item,
+          id:items,
           name:items[item].name,
           url:items[item].url
         })
