@@ -43,20 +43,20 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>HUE LIMIT</div>
-        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="360" value={this.props.val.stroke1strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="360" value={this.props.val.stroke1strokeHuelimit} onChange={this.props.handleHuelimit} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE SATURATION</div>
-        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="100" value={this.props.val.stroke1strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="100" value={this.props.val.stroke1strokeSaturation} onChange={this.props.handleSaturation} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
-        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="100" value={this.props.val.stroke1strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke1' step="1" min="1" max="100" value={this.props.val.stroke1strokeLightening} onChange={this.props.handleLightening} />
         </div>
         <div className='setting-stroke1'>NEIGHBOR BASED</div>
         <div className='option'>
         <div className='strokeWidth'>STROKE WIDTH</div>
-        <input id='number' data-name='stroke2' type='number' min="1" max="60" value={this.props.val.stroke2strokeWidth} onChange={this.handleStrokeWidth}  />
+        <input id='number' data-name='stroke2' type='number' min="1" max="60" value={this.props.val.stroke2strokeWidth} onChange={this.props.handleStroke}  />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE OPACITY</div>
@@ -68,15 +68,15 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>HUE LIMIT</div>
-        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="360" value={this.props.val.stroke2strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="360" value={this.props.val.stroke2strokeHuelimit} onChange={this.props.handleHuelimit} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE SATURATION</div>
-        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="100" value={this.props.val.stroke2strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="100" value={this.props.val.stroke2strokeSaturation} onChange={this.props.handleSaturation} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
-        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="100" value={this.props.val.stroke2strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="100" value={this.props.val.stroke2strokeLightening} onChange={this.props.handleLightening} />
         </div>
         <div className='setting-stroke1'>POINT BASED</div>
         <div className='option'>
@@ -93,15 +93,15 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>HUE LIMIT</div>
-        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="360" value={this.props.val.stroke3strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="360" value={this.props.val.stroke3strokeHuelimit} onChange={this.props.handleHuelimit} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE SATURATION</div>
-        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="100" value={this.props.val.stroke3strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="100" value={this.props.val.stroke3strokeSaturation} onChange={this.props.handleSaturation} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
-        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="100" value={this.props.val.stroke3strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="100" value={this.props.val.stroke3strokeLightening} onChange={this.props.handleLightening} />
         </div>
         <div className='setting-stroke1'>FUR</div>
         <div className='option'>
@@ -118,15 +118,15 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>HUE LIMIT</div>
-        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="360" value={this.props.val.stroke4strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="360" value={this.props.val.stroke4strokeHuelimit} onChange={this.props.handleHuelimit} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE SATURATION</div>
-        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="100" value={this.props.val.stroke4strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="100" value={this.props.val.stroke4strokeSaturation} onChange={this.props.handleSaturation} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
-        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="100" value={this.props.val.stroke4strokeOpacity} />
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="100" value={this.props.val.stroke4strokeLightening} onChange={this.props.handleLightening} />
         </div>
       </div>
     )

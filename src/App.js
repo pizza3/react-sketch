@@ -37,15 +37,27 @@ class App extends Component {
       stroke1strokeWidth:10,
       stroke1strokeOpacity:1,
       stroke1strokeHue:200,
+      stroke1strokeSaturation:100,
+      stroke1strokeLightening:50,
+      stroke1strokeHuelimit:360,
       stroke2strokeWidth:1,
       stroke2strokeOpacity:0.2,
       stroke2strokeHue:1,
+      stroke2strokeSaturation:100,
+      stroke2strokeLightening:50,
+      stroke2strokeHuelimit:360,
       stroke3strokeWidth:1,
       stroke3strokeOpacity:1,
       stroke3strokeHue:1,
+      stroke3strokeSaturation:100,
+      stroke3strokeLightening:50,
+      stroke3strokeHuelimit:360,
       stroke4strokeWidth:1,
       stroke4strokeOpacity:1,
-      stroke4strokeHue:1
+      stroke4strokeHue:1,
+      stroke4strokeSaturation:100,
+      stroke4strokeLightening:50,
+      stroke4strokeHuelimit:360
     }
     this.handleChange = this.handleChange.bind(this);
     this.namehandleChange = this.namehandleChange.bind(this);
@@ -69,6 +81,9 @@ class App extends Component {
     this.showsavemodal = this.showsavemodal.bind(this);
     this.handleStrokeWidth = this.handleStrokeWidth.bind(this);
     this.handleStrokeOpacity = this.handleStrokeOpacity.bind(this);
+    this.handleStrokeSaturation = this.handleStrokeSaturation.bind(this);
+    this.handleStrokeLightening = this.handleStrokeLightening.bind(this);
+    this.handleStrokeHuelimit = this.handleStrokeHuelimit.bind(this);
   }
 
 
@@ -105,6 +120,29 @@ handleStrokeHue(event){
     [stroke+'strokeHue']:event.target.value
   });
 }
+
+handleStrokeSaturation(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeSaturation']:event.target.value
+  });
+}
+
+handleStrokeLightening(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeLightening']:event.target.value
+  });
+}
+
+handleStrokeHuelimit(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeHuelimit']:event.target.value
+  });
+}
+
+
 
   openState(){
     this.setState({
@@ -373,7 +411,9 @@ logoutFacebook(){
       <div className="App">
         {this.state.grid?
           <Grid/>:null}
-          <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)} handleHue={this.handleStrokeHue.bind(this)}/>
+          <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
+            handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
+          handleHuelimit={this.handleStrokeHuelimit.bind(this)}/>
           <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
           <Archive user={this.state.user}/>

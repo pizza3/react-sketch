@@ -145,7 +145,7 @@ class Sketch extends Component{
 
       else{
 
-        this.state.ctx.strokeStyle = `hsl(${this.state.hue}, 100%, 50%)`;
+        this.state.ctx.strokeStyle = `hsl(${this.state.hue}, ${this.props.val.stroke1strokeSaturation}%, ${this.props.val.stroke1strokeLightening}%)`;
         this.state.ctx.lineTo(e.clientX , e.clientY - 50);
         this.state.ctx.stroke();
         this.state.ctx.beginPath();
@@ -156,7 +156,7 @@ class Sketch extends Component{
         this.setState({
           hue:this.state.hue+1
         });
-        if (this.state.hue >= 360) {
+        if (this.state.hue >= this.props.val.stroke1strokeHuelimit) {
           this.setState({
             hue:0
           });
@@ -200,13 +200,13 @@ class Sketch extends Component{
           var dy1 = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           var d1 = dx1 * dx1 + dy1 * dy1;
 
-          if (d1 < 10000) {
+          if (d1 < 1000) {
             this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
+            this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke2strokeSaturation}%, ${this.props.val.stroke2strokeLightening}%,0.1)`;
             this.setState({
               hue:this.state.hue+1
             });
-            if (this.state.hue >= 360) {
+            if (this.state.hue >= this.props.val.stroke2strokeHuelimit) {
               this.setState({
                 hue:0
               });
