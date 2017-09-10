@@ -34,11 +34,18 @@ class App extends Component {
       showerasemodal:false,
       showsavemodal:false,
       images:[],
-      stroke1:{
-        strokeWidth:1,
-        strokeOpacity:1,
-        strokeHue:1,
-      }
+      stroke1strokeWidth:10,
+      stroke1strokeOpacity:1,
+      stroke1strokeHue:200,
+      stroke2strokeWidth:1,
+      stroke2strokeOpacity:0.2,
+      stroke2strokeHue:1,
+      stroke3strokeWidth:1,
+      stroke3strokeOpacity:1,
+      stroke3strokeHue:1,
+      stroke4strokeWidth:1,
+      stroke4strokeOpacity:1,
+      stroke4strokeHue:1
     }
     this.handleChange = this.handleChange.bind(this);
     this.namehandleChange = this.namehandleChange.bind(this);
@@ -60,12 +67,13 @@ class App extends Component {
     this.openArchive = this.openArchive.bind(this);
     this.showerasemodal = this.showerasemodal.bind(this);
     this.showsavemodal = this.showsavemodal.bind(this);
+    this.handleStrokeWidth = this.handleStrokeWidth.bind(this);
+    this.handleStrokeOpacity = this.handleStrokeOpacity.bind(this);
   }
 
 
 handleChange(color) {
   this.setState({colorPass: color.rgb, normal: true, rainbow: false});
-
 }
 
 handleStroke(event){
@@ -76,6 +84,27 @@ handleStroke(event){
 }
 
 
+
+handleStrokeWidth(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeWidth']:event.target.value
+  });
+}
+
+handleStrokeOpacity(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeOpacity']:event.target.value
+  });
+}
+
+handleStrokeHue(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeHue']:event.target.value
+  });
+}
 
   openState(){
     this.setState({
@@ -250,7 +279,18 @@ logoutFacebook(){
     this.setState({
       delete:!this.state.delete,
       showerasemodal:false
-    });
+    },
+    function () {
+      if(this.state.showerasemodal){
+        document.getElementById('erase-modal').classList.remove('disp');
+        document.getElementById('filter').classList.remove('hide-filter')
+      }
+      else {
+        document.getElementById('erase-modal').className+=' disp';
+        document.getElementById('filter').className+=' hide-filter';
+      }
+    }
+  );
     setTimeout(()=>{
       this.setState({
         delete:false
@@ -261,13 +301,35 @@ logoutFacebook(){
   showerasemodal(){
     this.setState({
       showerasemodal:!this.state.showerasemodal
+    } ,
+    function () {
+      if(this.state.showerasemodal){
+        document.getElementById('erase-modal').classList.remove('disp');
+        document.getElementById('filter').classList.remove('hide-filter')
+      }
+      else {
+        document.getElementById('erase-modal').className+=' disp';
+        document.getElementById('filter').className+=' hide-filter';
+      }
     })
-  }
+}
+
 
   showsavemodal(){
     this.setState({
       showsavemodal:!this.state.showsavemodal
-    })
+    } ,
+    function () {
+      if(this.state.showsavemodal){
+        document.getElementById('save-modal').classList.remove('disp');
+        document.getElementById('filter').classList.remove('hide-filter')
+      }
+      else {
+        document.getElementById('save-modal').className+=' disp';
+        document.getElementById('filter').className+=' hide-filter';
+      }
+    }
+  )
   }
 
   namehandleChange(e){
@@ -278,8 +340,6 @@ logoutFacebook(){
 
 
   componentDidMount(){
-
-
     auth.onAuthStateChanged((user)=>{
       if(user){
         this.setState({user});
@@ -313,16 +373,17 @@ logoutFacebook(){
       <div className="App">
         {this.state.grid?
           <Grid/>:null}
-          <Setting/>
-          {this.state.showsavemodal?
-          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>:null}
-          {this.state.showerasemodal?
-          <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>:null}
+          <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)} handleHue={this.handleStrokeHue.bind(this)}/>
+          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>
+          <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
           <Archive user={this.state.user}/>
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
             <div className='slogan'>Create Abstract Art With Ease.</div>
+            <video  width='500px' height='300px' autoPlay loop >
+              <source src="./images/video.mp4" type="video/mp4"/>
+            </video>
             <div className='google-signin' onClick={this.loginGoogle}></div>
             {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}
           </div>:null}
@@ -349,8 +410,8 @@ logoutFacebook(){
                 </li>
               </ul>
             </div>:null}
-          <div className='filter'></div>
-         <Sketch onClick={this.openRainbow} colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
+          <div id='filter' className='filter hide-filter'></div>
+         <Sketch val={this.state} onClick={this.openRainbow} colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}
       </div>
     );

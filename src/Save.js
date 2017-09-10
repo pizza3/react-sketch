@@ -21,7 +21,7 @@ class Save extends Component {
 
   render(){
     return(
-      <div className='save-modal'>
+      <div id='save-modal' className='save-modal disp'>
         <div className='save-name'>SKETCH TITLE:</div>
         <input id='save-modal-name' type='text' onChange={this.props.handleChange} />
         <button className='save-button' onClick={this.props.saveCanvas}>SAVE</button>

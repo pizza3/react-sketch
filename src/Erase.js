@@ -13,7 +13,7 @@ class Erase extends Component {
       'color':this.state.color
     }
     return(
-      <div className='erase-modal'>
+      <div id='erase-modal' className='erase-modal disp'>
         <div className='erase-header'>
           ARE YOU SURE, YOU WANT TO <span style={col}>DELETE</span> THE WHOLE SKETCH.
         </div>

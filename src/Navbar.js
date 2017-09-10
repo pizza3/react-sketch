@@ -25,7 +25,7 @@ class Navbar extends Component{
   //   });
   // }
 
-  
+
 
 
   render(){
@@ -55,16 +55,22 @@ class Navbar extends Component{
           <rect x="3" y="14" width="7" height="7"></rect>
         </svg>
         </div>
+        <div className='undo-button'>
+        <div id='hide-undo' className='hide-undo'></div>
         <div className='undo' onClick={this.props.undo}>
           <svg id='undo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
         </div>
+      </div>
+      <div className='redo-button'>
+        <div id='hide-redo' className='hide-redo'></div>
         <div className='redo' onClick={this.props.redo}>
           <svg id='redo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
         </div>
+      </div>
         <div className='delete' onClick={this.props.delete}>
           <svg id='trash' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="3 6 5 6 21 6"></polyline>
