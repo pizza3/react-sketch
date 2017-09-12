@@ -25,6 +25,7 @@ class Save extends Component {
         <div className='save-name'>SKETCH TITLE:</div>
         <input id='save-modal-name' type='text' onChange={this.props.handleChange} />
         <button className='save-button' onClick={this.props.saveCanvas}>SAVE</button>
+        <button className='save-close' onClick={this.props.closeSave}>CANCLE</button>
         <progress id='progress' value="0" max="100"></progress>
       </div>
     )

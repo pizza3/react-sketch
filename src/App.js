@@ -46,6 +46,7 @@ class App extends Component {
       stroke2strokeSaturation:100,
       stroke2strokeLightening:50,
       stroke2strokeHuelimit:360,
+      stroke2strokeDistance:1000,
       stroke3strokeWidth:1,
       stroke3strokeOpacity:1,
       stroke3strokeHue:1,
@@ -84,6 +85,7 @@ class App extends Component {
     this.handleStrokeSaturation = this.handleStrokeSaturation.bind(this);
     this.handleStrokeLightening = this.handleStrokeLightening.bind(this);
     this.handleStrokeHuelimit = this.handleStrokeHuelimit.bind(this);
+    this.handleStrokeDistance = this.handleStrokeDistance.bind(this);
   }
 
 
@@ -139,6 +141,13 @@ handleStrokeHuelimit(event){
   let stroke=event.target.getAttribute('data-name');
   this.setState({
     [stroke+'strokeHuelimit']:event.target.value
+  });
+}
+
+handleStrokeDistance(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeDistance']:event.target.value
   });
 }
 
@@ -377,7 +386,7 @@ logoutFacebook(){
   }
 
 
-  componentDidMount(){
+  componentWillMount(){
     auth.onAuthStateChanged((user)=>{
       if(user){
         this.setState({user});
@@ -413,17 +422,14 @@ logoutFacebook(){
           <Grid/>:null}
           <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
             handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
-          handleHuelimit={this.handleStrokeHuelimit.bind(this)}/>
-          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas}/>
+          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} />
+          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
           <Archive user={this.state.user}/>
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP</div>
             <div className='slogan'>Create Abstract Art With Ease.</div>
-            <video  width='500px' height='300px' autoPlay loop >
-              <source src="./images/video.mp4" type="video/mp4"/>
-            </video>
             <div className='google-signin' onClick={this.loginGoogle}></div>
             {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}
           </div>:null}

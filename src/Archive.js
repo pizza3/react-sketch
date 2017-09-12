@@ -12,9 +12,7 @@ class Archive extends Component{
   }
 
   componentWillReceiveProps(newProps){
-    this.setState({
-      user:newProps.user.uid
-    });
+
   }
 
   componentWillMount(){

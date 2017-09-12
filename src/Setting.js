@@ -78,6 +78,10 @@ class Setting extends Component{
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
         <input id='opacity' type='number' data-name='stroke2' step="1" min="1" max="100" value={this.props.val.stroke2strokeLightening} onChange={this.props.handleLightening} />
         </div>
+        <div className='option'>
+        <div className='strokeDistance'>DISTANCE</div>
+        <input id='opacity' type='number' data-name='stroke2' step="1" min="100" max="1000000" value={this.props.val.stroke2strokeDistance} onChange={this.props.handleDistance} />
+        </div>
         <div className='setting-stroke1'>POINT BASED</div>
         <div className='option'>
         <div className='strokeWidth'>STROKE WIDTH</div>

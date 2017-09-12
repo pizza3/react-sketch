@@ -177,7 +177,7 @@ class Sketch extends Component{
             var dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
             var d = dx * dx + dy * dy;
 
-            if (d < 1000) {
+            if (d < this.props.val.stroke2strokeDistance) {
 
               this.state.ctx.beginPath();
               this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',0.1)';
@@ -200,7 +200,7 @@ class Sketch extends Component{
           var dy1 = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           var d1 = dx1 * dx1 + dy1 * dy1;
 
-          if (d1 < 1000) {
+          if (d1 < this.props.val.stroke2strokeDistance) {
             this.state.ctx.beginPath();
             this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke2strokeSaturation}%, ${this.props.val.stroke2strokeLightening}%,0.1)`;
             this.setState({
@@ -222,7 +222,6 @@ class Sketch extends Component{
 
         case "2":
         if(this.state.normal){
-        this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[0].x, this.state.points[0].y);
@@ -327,7 +326,7 @@ class Sketch extends Component{
       cStep:this.state.cStep+1
     },function () {
       if(this.state.cStep>=0){
-        document.getElementById('hide-undo').className+=' hide-filter';
+        document.getElementById('hide-undo1').className+=' hide-filter';
 
       }
       else if (this.state.cStep!==this.state.cPushArray.length-1) {

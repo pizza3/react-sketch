@@ -49,7 +49,7 @@
   margin-top: 36vh;
   position: fixed;
   text-align: center;
-  color: #4688f1;
+  color: #87deff;
   z-index: 20;
 }
 
@@ -101,7 +101,7 @@
   width: 100%;
   height: 50px;
   background: #fff;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-left: none;
   border-top: none;
   border-right: none;
@@ -150,7 +150,7 @@
 }
 
 .active{
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
 }
 
 .pick {
@@ -183,7 +183,7 @@
   font-size: 12px;
   padding-top: 10px;
   padding-left: 10px;
-  color: #4688f1;
+  color: #87deff;
 }
 
 .strokePicker {
@@ -222,7 +222,7 @@ li {
 }
 
 li:hover {
-  color: #4688f1;
+  color: #87deff;
 }
 
 .grid-btn {
@@ -230,7 +230,7 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -274,7 +274,7 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
 
   cursor: pointer;
@@ -292,14 +292,14 @@ li:hover {
   position: absolute;
   left: 3px;
   top: 4px;
-  stroke: #71a4f4;
+  stroke: #87deff;
 }
 
 #redo {
   position: absolute;
   left: 5px;
   top: 4px;
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -314,7 +314,7 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -348,7 +348,7 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -357,7 +357,7 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -365,7 +365,7 @@ li:hover {
   position: absolute;
   left: 4px;
   top: 4px;
-  stroke: #71a4f4;
+  stroke: #87deff;
 
   transform: scale(0.9);
 }
@@ -374,7 +374,7 @@ li:hover {
   position: absolute;
   left: 4px;
   top: 4px;
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -390,7 +390,7 @@ li:hover {
   left: 4px;
   top: 4px;
   transform: scale(0.9);
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -418,7 +418,7 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
@@ -438,7 +438,7 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #cccccc;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
@@ -458,7 +458,7 @@ li:hover {
   left: 5px;
   top: 4px;
   transform: scale(0.9);
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -467,7 +467,7 @@ li:hover {
   left: 6px;
   top: 4px;
   transform: scale(0.9);
-  stroke: #71a4f4;
+  stroke: #87deff;
 
 }
 
@@ -530,14 +530,14 @@ li:hover {
   position: relative;
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
-  color: #71a4f4;
+  color: #87deff;
   font-size: 25px;
   letter-spacing: 4px;
   margin-top: 22px;
   margin-bottom: 8px;
 }
 
-.strokeWidth, .strokeOpacity {
+.strokeWidth, .strokeOpacity, .strokeDistance {
   position: relative;
   display: inline-block;
   font-family: 'Roboto', sans-serif;
@@ -572,12 +572,12 @@ li:hover {
 
 #number:focus {
   outline: none;
-  border-color: #71a4f4;
+  border-color: #87deff;
 }
 
 #opacity:focus {
   outline: none;
-  border-color: #71a4f4;
+  border-color: #87deff;
 }
 
 #downloader {
@@ -621,8 +621,8 @@ li:hover {
   float: left;
   height: 37px;
   border-radius: 3px ;
-  background: #71a4f4;
-  border: 1px solid #71a4f4;
+  background: #87deff;
+  border: 1px solid #87deff;
   transition: .4s;
   color: #fff;
   cursor: pointer;
@@ -630,6 +630,8 @@ li:hover {
   margin-left: 54px;
 
 }
+
+
 
 .save-button{
   margin-left: 10%;
@@ -641,12 +643,12 @@ li:hover {
 
 .erase-yes:hover{
   background: #fff;
-  color: #71a4f4;
+  color: #87deff;
 }
 
 .save-button:hover{
   background: #fff;
-  color: #71a4f4;
+  color: #87deff;
 }
 
 
@@ -655,14 +657,14 @@ li:hover {
 
 }
 
-.erase-no{
+.erase-no,.save-close{
   border: 1px solid;
   width: 105px;
   float: right;
   height: 37px;
   border-radius: 3px ;
-  background: #71a4f4;
-  border: 1px solid #71a4f4;
+  background: #87deff;
+  border: 1px solid #87deff;
   transition: .4s;
   color: #fff;
   cursor: pointer;
@@ -673,13 +675,24 @@ li:hover {
 
 .erase-no:hover{
   background: #fff;
-  color: #71a4f4;
+  color: #87deff;
+}
+
+.save-close:hover{
+  background: #fff;
+  color: #87deff;
 }
 
 .erase-no:focus{
   outline: none;
 
 }
+
+.save-close:focus{
+  outline: none;
+
+}
+
 
 #save-modal-name{
   border: 1px solid #828282;
@@ -706,7 +719,7 @@ li:hover {
   color: #505050;
   font-size: 29px;
   margin-left: 9%;
-  margin-top: 23px;
+  margin-top: 32px;
 
 }
 
