@@ -18,6 +18,7 @@
   background: #3300ff;
 }
 
+
 /*svg{
   stroke:#3300ff;
 }*/
@@ -28,7 +29,7 @@
   font-weight: 900;
   left: 0;
   right: 0;
-  margin-top: 18vh;
+  margin-top: 8vh;
   position: fixed;
   text-align: center;
   color: #292929;
@@ -36,6 +37,24 @@
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #292929;
   z-index: 20;
+}
+
+.beta {
+  border: 1px solid #87DEFF;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 3px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  padding-left: ;
+  letter-spacing: 0px;
+  background: #87deff;
+  -webkit-text-fill-color: #fff;
+  -webkit-text-stroke-width: 0px;
+  -webkit-text-stroke-color: #87deff;
 }
 
 .slogan {
@@ -46,7 +65,7 @@
   word-spacing: 2px;
   left: 0;
   right: 0;
-  margin-top: 36vh;
+  margin-top: 26vh;
   position: fixed;
   text-align: center;
   color: #87deff;
@@ -137,10 +156,9 @@
   background-size: cover;
   cursor: pointer;
   transition: .5s;
-
 }
 
-.rainbow-span,.pick-span{
+.rainbow-span, .pick-span {
   position: absolute;
   width: 42px;
   height: 42px;
@@ -149,7 +167,7 @@
   border-radius: 50%;
 }
 
-.active{
+.active {
   border: 1px solid #e6e6e6;
 }
 
@@ -170,7 +188,7 @@
   float: left;
   width: 151px;
   height: 35px;
-  border: 1px solid #dedede;
+  border: 1px solid #e6e6e6;
   border-radius: 27px;
   margin-left: 10px;
   margin-top: 7px;
@@ -240,13 +258,11 @@ li:hover {
   transition: .5s;
 }
 
-
-.grid-btn:hover{
+.grid-btn:hover {
   border-radius: 33%;
-
 }
 
-.undo-button,.redo-button{
+.undo-button, .redo-button {
   position: relative;
   width: 35px;
   height: 35px;
@@ -258,7 +274,7 @@ li:hover {
   float: left;
 }
 
-.hide-undo,.hide-redo{
+.hide-undo, .hide-redo {
   position: absolute;
   z-index: 10;
   height: 35px;
@@ -269,23 +285,21 @@ li:hover {
   cursor: not-allowed;
 }
 
-.undo,.redo {
+.undo, .redo {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
   border: 1px solid #e6e6e6;
   border-radius: 50%;
-
   cursor: pointer;
   -webkit-transition: .5s;
   -o-transition: .5s;
   transition: .5s;
 }
 
-.undo:hover{
+.undo:hover {
   border-radius: 33%;
-
 }
 
 #undo {
@@ -300,13 +314,10 @@ li:hover {
   left: 5px;
   top: 4px;
   stroke: #87deff;
-
 }
 
-
-.redo:hover{
+.redo:hover {
   border-radius: 33%;
-
 }
 
 .delete, .save, .archive, .download {
@@ -324,22 +335,19 @@ li:hover {
   transition: .5s;
 }
 
-.delete:hover{
+.delete:hover {
   border-radius: 33%;
-
 }
 
-.save:hover{
+.save:hover {
   border-radius: 33%;
-
 }
 
-.archive:hover{
+.archive:hover {
   border-radius: 33%;
-
 }
 
-.download:hover{
+.download:hover {
   border-radius: 33%;
 }
 
@@ -349,7 +357,6 @@ li:hover {
   top: 4px;
   transform: scale(0.9);
   stroke: #87deff;
-
 }
 
 #save {
@@ -358,7 +365,6 @@ li:hover {
   top: 4px;
   transform: scale(0.9);
   stroke: #87deff;
-
 }
 
 #download {
@@ -366,7 +372,6 @@ li:hover {
   left: 4px;
   top: 4px;
   stroke: #87deff;
-
   transform: scale(0.9);
 }
 
@@ -375,7 +380,6 @@ li:hover {
   left: 4px;
   top: 4px;
   stroke: #87deff;
-
 }
 
 #dropdown {
@@ -391,7 +395,6 @@ li:hover {
   top: 4px;
   transform: scale(0.9);
   stroke: #87deff;
-
 }
 
 .profile {
@@ -428,9 +431,8 @@ li:hover {
   transition: .5s;
 }
 
-.logout:hover{
+.logout:hover {
   border-radius: 33%;
-
 }
 
 .setting {
@@ -448,9 +450,8 @@ li:hover {
   transition: .5s;
 }
 
-.setting:hover{
+.setting:hover {
   border-radius: 33%;
-
 }
 
 #setting-logo {
@@ -459,7 +460,6 @@ li:hover {
   top: 4px;
   transform: scale(0.9);
   stroke: #87deff;
-
 }
 
 #logout {
@@ -468,7 +468,6 @@ li:hover {
   top: 4px;
   transform: scale(0.9);
   stroke: #87deff;
-
 }
 
 .sheet {
@@ -499,7 +498,7 @@ li:hover {
   overflow: scroll;
   position: fixed;
   z-index: 20;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #e6e6e6;
   left: 100%;
   width: 30%;
   height: 100vh;
@@ -510,14 +509,13 @@ li:hover {
   transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-.openSetting{
+.openSetting {
   left: 70%;
 }
 
 .openArchive {
   left: 70%;
 }
-
 
 .setting-header, .archive-header {
   font-weight: 800;
@@ -599,10 +597,10 @@ li:hover {
   margin-top: 61px;
   transform-origin: center;
   transform: translateY(0px);
-  transition:all 400ms cubic-bezier(0.18, 0.89, 0.28, 1.1);
+  transition: all 400ms cubic-bezier(0.18, 0.89, 0.28, 1.1);
 }
 
-.erase-header{
+.erase-header {
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
@@ -614,13 +612,12 @@ li:hover {
   margin-left: 21px;
 }
 
-
-.erase-yes,.save-button{
+.erase-yes, .save-button {
   border: 1px solid;
   width: 105px;
   float: left;
   height: 37px;
-  border-radius: 3px ;
+  border-radius: 3px;
   background: #87deff;
   border: 1px solid #87deff;
   transition: .4s;
@@ -628,41 +625,36 @@ li:hover {
   cursor: pointer;
   margin-top: 51px;
   margin-left: 54px;
-
 }
 
-
-
-.save-button{
+.save-button {
   margin-left: 10%;
 }
 
-.save-button:focus{
+.save-button:focus {
   outline: none;
 }
 
-.erase-yes:hover{
+.erase-yes:hover {
   background: #fff;
   color: #87deff;
 }
 
-.save-button:hover{
+.save-button:hover {
   background: #fff;
   color: #87deff;
 }
 
-
-.erase-yes:focus{
+.erase-yes:focus {
   outline: none;
-
 }
 
-.erase-no,.save-close{
+.erase-no, .save-close {
   border: 1px solid;
   width: 105px;
   float: right;
   height: 37px;
-  border-radius: 3px ;
+  border-radius: 3px;
   background: #87deff;
   border: 1px solid #87deff;
   transition: .4s;
@@ -670,31 +662,27 @@ li:hover {
   cursor: pointer;
   margin-top: 51px;
   margin-right: 54px;
-
 }
 
-.erase-no:hover{
+.erase-no:hover {
   background: #fff;
   color: #87deff;
 }
 
-.save-close:hover{
+.save-close:hover {
   background: #fff;
   color: #87deff;
 }
 
-.erase-no:focus{
+.erase-no:focus {
   outline: none;
-
 }
 
-.save-close:focus{
+.save-close:focus {
   outline: none;
-
 }
 
-
-#save-modal-name{
+#save-modal-name {
   border: 1px solid #828282;
   position: relative;
   width: 80%;
@@ -707,12 +695,11 @@ li:hover {
   padding-left: 10px;
 }
 
-#save-modal-name:focus{
+#save-modal-name:focus {
   outline: none;
-
 }
 
-.save-name{
+.save-name {
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
@@ -720,38 +707,38 @@ li:hover {
   font-size: 29px;
   margin-left: 9%;
   margin-top: 32px;
-
 }
 
-progress{
+progress {
   position: relative;
   width: 80%;
   margin-left: 10%;
   transition: .5s;
 }
 
-.filter{
+.filter {
   position: absolute;
   width: 100%;
   height: 100vh;
   opacity: 0.8;
   z-index: 40;
   background-color: #8EC5FC;
-  background-image:  linear-gradient(180deg, #565656 -3%, #000000 100%);
+  background-image: linear-gradient(180deg, #565656 -3%, #000000 100%);
   transition: .5s;
 }
 
-.hide-filter{
+.hide-filter {
   display: none;
 }
 
-.disp{
+.disp {
   transform: translateY(-350px);
   transform-origin: center;
 }
 
-
-video{
-  position: absolute;
-  z-index: 100;
+.arc-img{
+  position: relative;
+  width: 80%;
+  margin-left: 10%;
+  display: block;
 }

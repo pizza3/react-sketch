@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import firebase from './firebase.js';
+// import firebase from './firebase.js';
 
 
 class Archive extends Component{
@@ -12,28 +12,30 @@ class Archive extends Component{
   }
 
   componentWillReceiveProps(newProps){
-
+    this.setState({
+      user:newProps.user,
+      images:newProps.images
+    })
   }
 
   componentWillMount(){
-    console.log('mount');
-    let user  = this.state.user;
-    const itemsRef = firebase.database().ref(`${user}`);
-    itemsRef.on('value', (snapshot)=>{
-      let items = snapshot.val();
-      let images=[];
-      for(let item in items){
-        console.log(items[item].url)
-        images.push({
-          id:items,
-          name:items[item].name,
-          url:items[item].url
-        })
-      }
-      this.setState({
-        images:images
-      })
-    })
+    // console.log('mount');
+    // const itemsRef = firebase.database().ref(`${this.props.user}`);
+    // itemsRef.on('value', (snapshot)=>{
+    //   let items = snapshot.val();
+    //   let images=[];
+    //   for(let item in items){
+    //     console.log(items[item].url)
+    //     images.push({
+    //       id:items,
+    //       name:items[item].name,
+    //       url:items[item].url
+    //     })
+    //   }
+    //   this.setState({
+    //     images:images
+    //   })
+    // })
   }
 
   render(){
@@ -42,7 +44,13 @@ class Archive extends Component{
         <div className='archive-header'>
           ARCHIVE
         </div>
-
+        {this.state.images.map((item)=>{
+          return(
+            <li key={item.id}>
+            <img className='arc-img' src={item.url}/>
+          </li>
+          )
+        })}
       </div>
     )
   }

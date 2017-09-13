@@ -104,7 +104,7 @@ class Sketch extends Component{
     })
       break;
       case "2":
-      this.state.ctx.lineWidth = 1;
+      this.state.ctx.lineWidth = this.props.val.stroke3strokeWidth;
       this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
@@ -113,7 +113,7 @@ class Sketch extends Component{
     })
       break;
       case "3":
-      this.state.ctx.lineWidth = 1;
+      this.state.ctx.lineWidth = this.props.val.stroke4strokeWidth;
       this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
       this.state.ctx.lineJoin = this.state.ctx.lineCap = 'round';
       this.setState({
@@ -248,11 +248,11 @@ class Sketch extends Component{
             this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
           }
         }
-        this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
+        this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke3strokeSaturation}%, ${this.props.val.stroke3strokeLightening}%,0.1)`;
         this.setState({
           hue:this.state.hue+1
         });
-        if (this.state.hue >= 360) {
+        if (this.state.hue >= this.props.val.stroke3strokeHuelimit) {
           this.setState({
             hue:0
           });
@@ -264,23 +264,25 @@ class Sketch extends Component{
 
         case "3":
         if(this.state.normal){
-        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.beginPath();
+        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
+
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
         this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
         this.state.ctx.stroke();
         for (var i = 0, len = this.state.points.length; i < len; i++) {
-          dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
-          dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
-          d = dx * dx + dy * dy;
-          if (d < 2000 && Math.random() > d / 2000) {
+        var  dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
+        var  dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
+        var  d = dx * dx + dy * dy;
+          if (d < this.props.val.stroke4strokeDistance && Math.random() > d / this.props.val.stroke4strokeDistance) {
             this.state.ctx.beginPath();
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.5), this.state.points[this.state.points.length-1].y + (dy * 0.5));
             this.state.ctx.lineTo( this.state.points[this.state.points.length-1].x - (dx * 0.5), this.state.points[this.state.points.length-1].y - (dy * 0.5));
             this.state.ctx.stroke();
           }
         }
+
       }
       else {
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
@@ -292,20 +294,20 @@ class Sketch extends Component{
           dx = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
           dy = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
           d = dx * dx + dy * dy;
-          if (d < 2000 && Math.random() > d / 2000) {
+          if (d < this.props.val.stroke4strokeDistance && Math.random() > d / this.props.val.stroke4strokeDistance) {
             this.state.ctx.beginPath();
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx * 0.5), this.state.points[this.state.points.length-1].y + (dy * 0.5));
             this.state.ctx.lineTo( this.state.points[this.state.points.length-1].x - (dx * 0.5), this.state.points[this.state.points.length-1].y - (dy * 0.5));
             this.state.ctx.stroke();
           }
         }
-        this.state.ctx.strokeStyle = `hsla(${this.state.hue}, 100%, 80%,0.1)`;
+        this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke4strokeSaturation}%, ${this.props.val.stroke4strokeLightening}%,0.1)`;
         this.setState({
           hue:this.state.hue+1
         });
-        if (this.state.hue >= 350) {
+        if (this.state.hue >= this.props.val.stroke4strokeHuelimit) {
           this.setState({
-            hue:300
+            hue:0
           });
           }
       }

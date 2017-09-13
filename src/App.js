@@ -30,6 +30,7 @@ class App extends Component {
       redo:false,
       delete:false,
       user:null,
+      id:null,
       save:false,
       showerasemodal:false,
       showsavemodal:false,
@@ -47,7 +48,7 @@ class App extends Component {
       stroke2strokeLightening:50,
       stroke2strokeHuelimit:360,
       stroke2strokeDistance:1000,
-      stroke3strokeWidth:1,
+      stroke3strokeWidth:10,
       stroke3strokeOpacity:1,
       stroke3strokeHue:1,
       stroke3strokeSaturation:100,
@@ -251,7 +252,8 @@ handleStrokeDistance(event){
     .then((result) => {
       const user = result.user;
       this.setState({
-        user
+        user:user,
+        id:user.uid
       });
     });
   }
@@ -387,35 +389,62 @@ logoutFacebook(){
 
 
   componentWillMount(){
+    // let user  = this.state.user;
+    // let userid  = this.state.user.uid;
+
     auth.onAuthStateChanged((user)=>{
       if(user){
-        this.setState({user});
+        this.setState({
+          user:user,
+          id:user.uid
+        },()=>{
+          const itemsRef = firebase.database().ref(this.state.id);
+          itemsRef.on('value', (snapshot)=>{
+            let items = snapshot.val();
+            let images=[];
+            for(let item in items){
+              // console.log(items[item].url)
+              images.push({
+                id:item,
+                name:items[item].name,
+                url:items[item].url
+              })
+            }
+            // console.log(items);
+              this.setState({
+              images:images
+            })
+          })
+        });
       }
     });
 
-    // let user  = this.state.user;
-    // let userid  = this.state.user.uid;
-    // const itemsRef = firebase.database().ref(`${userid}`);
+    // const itemsRef = firebase.database().ref(this.state.id);
     // itemsRef.on('value', (snapshot)=>{
+    //   console.log('ji');
     //   let items = snapshot.val();
     //   let images=[];
     //   for(let item in items){
-    //     console.log(items[item].url)
+    //     // console.log(items[item].url)
     //     images.push({
-    //       id:items,
+    //       id:item,
     //       name:items[item].name,
     //       url:items[item].url
     //     })
     //   }
-    //   this.setState({
-    //     images:images
+    //   console.log(items);
+    //     this.setState({
+    //     images:items
     //   })
     // })
+
+
 
   }
 
 
   render() {
+
     return (
       <div className="App">
         {this.state.grid?
@@ -425,10 +454,10 @@ logoutFacebook(){
           handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} />
           <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
-          <Archive user={this.state.user}/>
+          <Archive user={this.state.id} images={this.state.images}/>
         {this.state.user==null?
           <div>
-            <div className='head'>SCRAP</div>
+            <div className='head'>SCRAP<span className='beta'>Beta</span></div>
             <div className='slogan'>Create Abstract Art With Ease.</div>
             <div className='google-signin' onClick={this.loginGoogle}></div>
             {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}

@@ -5,7 +5,11 @@ class Navbar extends Component{
   constructor(props){
     super(props);
     this.state={
-      color:'#292929',
+      color:{
+        r:0,
+        g:0,
+        b:0
+      },
       user:null
     }
   }
@@ -31,7 +35,7 @@ class Navbar extends Component{
 
   render(){
     let back={
-      'backgroundColor':this.state.color
+      'backgroundColor':'rgb('+this.state.color.r+','+this.state.color.g+','+this.state.color.b+')'
     }
 
     let index={

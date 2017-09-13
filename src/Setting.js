@@ -14,16 +14,6 @@ class Setting extends Component{
     })
   }
 
-  // handleStrokeWidth(e){
-  //   this.props.onSelectStroke()
-  // }
-  //
-  // handleStrokeOpacity(){
-  //   this.props.onSelectOpacity()
-  // }
-
-
-
   render(){
     return(
       <div id='setting-box' className='setting-box'>
@@ -60,7 +50,7 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE OPACITY</div>
-        <input id='opacity' type='number' data-name='stroke2' step="0.1" min="0" max="1" value={this.props.val.stroke2strokeOpacity} onChange={this.handleOpacity} />
+        <input id='opacity' type='number' data-name='stroke2' step="0.1" min="0" max="1" value={this.props.val.stroke2strokeOpacity} onChange={this.props.handleOpacity} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE HUE</div>
@@ -85,11 +75,11 @@ class Setting extends Component{
         <div className='setting-stroke1'>POINT BASED</div>
         <div className='option'>
         <div className='strokeWidth'>STROKE WIDTH</div>
-        <input id='number' data-name='stroke3' type='number' min="1" max="60" value={this.props.val.stroke3strokeWidth} onChange={this.handleStrokeWidth}  />
+        <input id='number' data-name='stroke3' type='number' min="1" max="60" value={this.props.val.stroke3strokeWidth} onChange={this.props.handleStroke}  />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE OPACITY</div>
-        <input id='opacity' type='number' data-name='stroke3' step="0.1" min="0" max="1" value={this.props.val.stroke3strokeOpacity} onChange={this.handleOpacity} />
+        <input id='opacity' type='number' data-name='stroke3' step="0.1" min="0" max="1" value={this.props.val.stroke3strokeOpacity} onChange={this.props.handleOpacity} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE HUE</div>
@@ -110,7 +100,7 @@ class Setting extends Component{
         <div className='setting-stroke1'>FUR</div>
         <div className='option'>
         <div className='strokeWidth'>STROKE WIDTH</div>
-        <input id='number' data-name='stroke4' type='number' min="1" max="60" value={this.props.val.stroke4strokeWidth} onChange={this.handleStrokeWidth}  />
+        <input id='number' data-name='stroke4' type='number' min="1" max="60" value={this.props.val.stroke4strokeWidth} onChange={this.props.handleStroke}  />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE OPACITY</div>
@@ -131,6 +121,10 @@ class Setting extends Component{
         <div className='option'>
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
         <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="100" value={this.props.val.stroke4strokeLightening} onChange={this.props.handleLightening} />
+        </div>
+        <div className='option'>
+        <div className='strokeDistance'>DISTANCE</div>
+        <input id='opacity' type='number' data-name='stroke2' step="1" min="100" max="1000000" value={this.props.val.stroke2strokeDistance} onChange={this.props.handleDistance} />
         </div>
       </div>
     )
