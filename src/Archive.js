@@ -46,7 +46,7 @@ class Archive extends Component{
         </div>
         {this.state.images.map((item)=>{
           return(
-            <li key={item.id}>
+            <li className='img' key={item.id}>
             <img className='arc-img' src={item.url}/>
           </li>
           )

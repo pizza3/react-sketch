@@ -183,7 +183,18 @@ handleStrokeDistance(event){
     },
     function () {
       if(this.state.setting){
-        document.getElementById('setting-box').className+= ' openSetting';
+        if(this.state.archive){
+          document.getElementById('archive-box').classList.remove('openArchive');
+          setTimeout(()=>{
+            this.setState({
+              archive:false
+            });
+            document.getElementById('setting-box').className+= ' openSetting';
+          },600)
+        }
+        else {
+          document.getElementById('setting-box').className+= ' openSetting';
+        }
       }
       else {
         document.getElementById('setting-box').classList.remove('openSetting');
@@ -198,7 +209,18 @@ handleStrokeDistance(event){
     },
     function () {
       if(this.state.archive){
-        document.getElementById('archive-box').className+= ' openArchive';
+        if (this.state.setting) {
+          document.getElementById('setting-box').classList.remove('openSetting');
+            this.setState({
+              setting:false
+            });
+        setTimeout(()=>{
+          document.getElementById('archive-box').className+= ' openArchive';
+        },600)
+      }
+        else {
+          document.getElementById('archive-box').className+= ' openArchive';
+        }
       }
       else {
         document.getElementById('archive-box').classList.remove('openArchive');
@@ -303,7 +325,7 @@ logoutFacebook(){
       let file = document.getElementById('canvas').toDataURL("image/png");
       let inp = this.state.textInput
       let storageRef= firebase.storage().ref('sketch/'+user+'/'+inp)
-      let task = storageRef.putString(file);
+      let task = storageRef.putString(file,'data_url');
       task.on('state_changed',
       function progress(snapshot) {
         let per = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
