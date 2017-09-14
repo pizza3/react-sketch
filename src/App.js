@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navbar from './Navbar.js';
 import Sketch from './Sketch.js';
 import Grid from './Grid.js';
+import Visual1 from './Visual1.js';
+import Video from './Video.js';
 import Setting from './Setting.js';
 import Archive from './Archive.js';
 import Erase from './Erase.js';
@@ -280,13 +282,13 @@ handleStrokeDistance(event){
     });
   }
 
-logoutGoogle(){
-  auth.signOut()
-  .then(() => {
-    this.setState({
-      user: null
+  logoutGoogle(){
+    auth.signOut()
+    .then(() => {
+      this.setState({
+        user: null
+      });
     });
-  });
   }
 
   loginFacebook(){
@@ -481,11 +483,15 @@ logoutFacebook(){
           <div>
             <div className='head'>SCRAP<span className='beta'>Beta</span></div>
             <div className='slogan'>Create Abstract Art With Ease.</div>
+            {/* <Video/> */}
             <div className='google-signin' onClick={this.loginGoogle}></div>
-            {/* <div className='facebook-signin' onClick={this.loginFacebook}></div> */}
+             {/* <div className='facebook-signin' onClick={this.loginFacebook}></div>  */}
+             {/* <div className='grid-img'></div>
+            <Visual1/> */}
           </div>:null}
           {this.state.user?
             <div>
+
            <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.showsavemodal} download={this.downloadImage}
              openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.showerasemodal} />
            { this.state.open?

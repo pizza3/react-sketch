@@ -22,10 +22,12 @@ class Save extends Component {
   render(){
     return(
       <div id='save-modal' className='save-modal disp'>
+        <div className='save-header'>
         <div className='save-name'>SKETCH TITLE:</div>
         <input id='save-modal-name' type='text' onChange={this.props.handleChange} />
         <button className='save-button' onClick={this.props.saveCanvas}>SAVE</button>
         <button className='save-close' onClick={this.props.closeSave}>CANCLE</button>
+      </div>
         <progress id='progress' value="0" max="100"></progress>
       </div>
     )

@@ -198,8 +198,9 @@
   transition: .5s;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
-  font-size: 12px;
-  padding-top: 10px;
+  font-size: 10px;
+  padding-top: 12px;
+  letter-spacing: 2px;
   padding-left: 10px;
   color: #87deff;
 }
@@ -335,6 +336,54 @@ li:hover {
   transition: .5s;
 }
 
+.delete-arc {
+  position: absolute;
+  float: left;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #87deff;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-top: -144px;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.edit-arc {
+  position: absolute;
+  float: left;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #87deff;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-top: -193px;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.download-arc {
+  position: absolute;
+  float: left;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #87deff;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-top: -95px;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
 .delete:hover {
   border-radius: 33%;
 }
@@ -348,6 +397,10 @@ li:hover {
 }
 
 .download:hover {
+  border-radius: 33%;
+}
+
+.edit:hover {
   border-radius: 33%;
 }
 
@@ -368,6 +421,14 @@ li:hover {
 }
 
 #download {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  stroke: #87deff;
+  transform: scale(0.9);
+}
+
+#edit {
   position: absolute;
   left: 4px;
   top: 4px;
@@ -486,6 +547,24 @@ li:hover {
   height: 100vh;
 }
 
+.grid-img {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url('./images/grid.png');
+}
+
+.visual1 {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100vh;
+}
+
 .sketch-picker {
   position: absolute;
   top: 53px;
@@ -509,6 +588,11 @@ li:hover {
   transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
+.archive-box {
+  padding-left: 0px;
+  padding-bottom: 43px;
+}
+
 .openSetting {
   left: 70%;
 }
@@ -522,6 +606,10 @@ li:hover {
   font-size: 41px;
   letter-spacing: 1px;
   color: #292929;
+}
+
+.archive-header {
+  margin-left: 11px;
 }
 
 .setting-stroke1 {
@@ -736,7 +824,7 @@ progress {
   transform-origin: center;
 }
 
-.arc-img{
+.arc-img {
   position: relative;
   width: 80%;
   height: 200px;
@@ -744,10 +832,107 @@ progress {
   display: block;
 }
 
-.img{
+.img {
   position: relative;
   display: block;
+  height: auto;
   width: 100%;
-  border: none;
-  height: 200px;
+  border: 1px solid #f1f1f1;
+  border-left: none;
+  margin-top: 43px;
+  border-right: none;
+  transition: .4s;
+}
+
+.img-del {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+
+.arc-filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(180deg, #565656 -3%, #000000 100%);
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.img-del-txt {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-weight: 600;
+  font-size: 23px;
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-top: 33px;
+  z-index: 2;
+}
+
+.img-del-yes {
+  border: 1px solid;
+  width: 105px;
+  float: left;
+  height: 37px;
+  border-radius: 3px;
+  background: #87deff;
+  border: 1px solid #87deff;
+  transition: .4s;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 51px;
+  margin-left: 54px;
+  z-index: 2;
+}
+
+.img-del-yes:hover{
+  background:transparent;
+  color: #87deff;
+}
+
+.img-del-yes:focus {
+  outline: none;
+}
+
+.img-del-cancle {
+  border: 1px solid;
+  width: 105px;
+  float: right;
+  height: 37px;
+  border-radius: 3px;
+  background: #87deff;
+  border: 1px solid #87deff;
+  transition: .4s;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 51px;
+  margin-right: 54px;
+  z-index: 2;
+}
+.img-del-cancle:focus {
+  outline: none;
+}
+.img-del-cancle:hover{
+  background:transparent;
+  color: #87deff;
+}
+
+.img-del-hide {
+  display: none;
+}
+
+.hide-img{
+  opacity: 0;
+}
+
+.hide-img-height{
+  height: 0px;
+}
+
+.save-header{
+  transition: 0.5s;
+  opacity: 1;
 }
