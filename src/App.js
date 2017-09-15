@@ -61,7 +61,9 @@ class App extends Component {
       stroke4strokeHue:1,
       stroke4strokeSaturation:100,
       stroke4strokeLightening:50,
-      stroke4strokeHuelimit:360
+      stroke4strokeHuelimit:360,
+      stroke4strokeDistance:1000,
+      stroke4strokePointDistance:0.5,
     }
     this.handleChange = this.handleChange.bind(this);
     this.namehandleChange = this.namehandleChange.bind(this);
@@ -89,6 +91,8 @@ class App extends Component {
     this.handleStrokeLightening = this.handleStrokeLightening.bind(this);
     this.handleStrokeHuelimit = this.handleStrokeHuelimit.bind(this);
     this.handleStrokeDistance = this.handleStrokeDistance.bind(this);
+    this.handleStrokePointDistance = this.handleStrokePointDistance.bind(this);
+
   }
 
 
@@ -154,6 +158,12 @@ handleStrokeDistance(event){
   });
 }
 
+handleStrokePointDistance(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokePointDistance']:event.target.value
+  });
+}
 
 
   openState(){
@@ -322,6 +332,11 @@ logoutFacebook(){
   }
 
   saveCanvas(){
+    document.getElementById('save-header').className+=' hide-header';
+    setTimeout(()=>{
+      document.getElementById('progress-header').classList.remove('hide-header');
+    },500);
+    setTimeout(()=>{
     let user  = this.state.user.uid;
       // var url=window.URL.createObjectURL(blob, {autoRevoke: true});
       let file = document.getElementById('canvas').toDataURL("image/png");
@@ -331,7 +346,7 @@ logoutFacebook(){
       task.on('state_changed',
       function progress(snapshot) {
         let per = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
-        document.getElementById('progress').value=per
+        document.getElementById('bar').style.width=per+"%";
       },
       function error(err) {
       },
@@ -345,7 +360,21 @@ logoutFacebook(){
           }
           itemsRef.push(item);
         });
-      })
+        setTimeout(()=>{
+        document.getElementById('save-modal').className+=' disp';
+        document.getElementById('filter').className+=' hide-filter';
+        setTimeout(()=>{
+          document.getElementById('bar').style.width=0+"%";
+          document.getElementById("save-modal-name").value= ' ';
+          document.getElementById('progress-header').className+=' hide-header';
+          document.getElementById('save-header').classList.remove('hide-header');
+
+        },200)
+      },500);
+      });
+
+    },1000);
+
     }
 
   deleteCanvas(){
@@ -475,7 +504,7 @@ logoutFacebook(){
           <Grid/>:null}
           <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
             handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
-          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} />
+          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)} />
           <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
           <Archive user={this.state.id} images={this.state.images}/>

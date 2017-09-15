@@ -77,25 +77,29 @@ class Navbar extends Component{
         </svg>
         </div>
         <div className='undo-button'>
-          <span id='hide-undo' className="hint--bottom hint--rounded" aria-label="Undo" style={index} ></span>
         <div id='hide-undo1' className='hide-undo'></div>
+          {/* <span id='hide-undo' className="hint--bottom hint--rounded" aria-label="Undo" style={index} > */}
         <div className='undo' onClick={this.props.undo}>
           <svg id='undo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
         </div>
+      {/* </span> */}
+
       </div>
       <div className='redo-button'>
-        <span className="hint--bottom hint--rounded" aria-label="Redo" style={index} ></span>
+        {/* <span className="hint--bottom hint--rounded" aria-label="Redo" style={index} ></span> */}
         <div id='hide-redo' className='hide-redo'></div>
+          {/* <span className="hint--bottom hint--rounded" aria-label="Redo" style={index} > */}
         <div className='redo' onClick={this.props.redo}>
           <svg id='redo' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
         </div>
+      {/* </span> */}
       </div>
         <div className='delete' onClick={this.props.delete}>
-          <span className="hint--bottom hint--rounded" aria-label="Delete" style={index} ></span>
+         <span className="hint--bottom hint--rounded" aria-label="Delete" style={index} ></span>
           <svg id='trash' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="3 6 5 6 21 6"></polyline>
           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -113,13 +117,7 @@ class Navbar extends Component{
           <polyline points="16 16 12 12 8 16"></polyline>
         </svg>
         </div>
-        <div className='archive' onClick={this.props.openArc}>
-          <span className="hint--bottom hint--rounded" aria-label="Archive" style={index} ></span>
-          <svg id='archive' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
-          <polyline points="22 13 16 13 14 16 10 16 8 13 2 13"></polyline>
-          <path d="M5.47 5.19L2 13v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5l-3.47-7.81A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.83 1.19z"></path>
-        </svg>
-        </div>
+
         <a href='#' id="downloader" onClick={this.props.download} download="image.png" >
         <div className='download' >
           <span className="hint--bottom hint--rounded" aria-label="Download" style={index} ></span>
@@ -147,6 +145,13 @@ class Navbar extends Component{
           <circle cx="12" cy="12" r="3"></circle>
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
           </path>
+        </svg>
+        </div>
+        <div className='archive' onClick={this.props.openArc}>
+          <span className="hint--bottom hint--rounded" aria-label="Archive" style={index} ></span>
+          <svg id='archive' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
+          <polyline points="22 13 16 13 14 16 10 16 8 13 2 13"></polyline>
+          <path d="M5.47 5.19L2 13v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5l-3.47-7.81A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.83 1.19z"></path>
         </svg>
         </div>
       </div>

@@ -266,8 +266,7 @@ class Sketch extends Component{
         if(this.state.normal){
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.beginPath();
-        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
-
+        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',0.1)';
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
         this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
         this.state.ctx.stroke();
@@ -282,9 +281,13 @@ class Sketch extends Component{
             this.state.ctx.stroke();
           }
         }
-
       }
+
       else {
+        this.setState({
+          hue:this.props.val.stroke4strokeHue
+        });
+        var hue=this.props.val.stroke4strokeHue;
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
@@ -301,14 +304,16 @@ class Sketch extends Component{
             this.state.ctx.stroke();
           }
         }
-        this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke4strokeSaturation}%, ${this.props.val.stroke4strokeLightening}%,0.1)`;
-        this.setState({
-          hue:this.state.hue+1
-        });
-        if (this.state.hue >= this.props.val.stroke4strokeHuelimit) {
-          this.setState({
-            hue:0
-          });
+        this.state.ctx.strokeStyle = `hsla(${hue}, ${this.props.val.stroke4strokeSaturation}%, ${this.props.val.stroke4strokeLightening}%,0.1)`;
+        // this.setState({
+        //   hue:this.state.hue+1
+        // });
+        hue++;
+        if (hue >= this.props.val.stroke4strokeHuelimit) {
+          // this.setState({
+          //   hue:this.props.val.stroke4strokeHue
+          // });
+          hue=this.props.val.stroke4strokeHue;
           }
       }
 
@@ -371,7 +376,7 @@ class Sketch extends Component{
           this.state.ctx.drawImage(canvasPic,0,0,this.state.canvas.width/2, this.state.canvas.height/2);
         }
         if(this.state.cStep===-1){
-          document.getElementById('hide-undo').classList.remove('hide-filter');
+          document.getElementById('hide-undo1').classList.remove('hide-filter');
 
         }
       }
@@ -381,7 +386,7 @@ class Sketch extends Component{
 
 redoCanvas(){
   if(this.state.cStep<=this.state.cPushArray.length-1){
-    document.getElementById('hide-undo').className+=' hide-filter';
+    document.getElementById('hide-undo1').className+=' hide-filter';
     this.setState({
       cStep:this.state.cStep+1
     },

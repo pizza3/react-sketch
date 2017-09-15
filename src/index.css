@@ -188,8 +188,7 @@
   float: left;
   width: 151px;
   height: 35px;
-  border: 1px solid #e6e6e6;
-  border-radius: 27px;
+  border-bottom: 1px solid #e6e6e6;
   margin-left: 10px;
   margin-top: 7px;
   cursor: pointer;
@@ -249,7 +248,6 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -291,7 +289,7 @@ li:hover {
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #90e0ff;
   border-radius: 50%;
   cursor: pointer;
   -webkit-transition: .5s;
@@ -321,12 +319,11 @@ li:hover {
   border-radius: 33%;
 }
 
-.delete, .save, .archive, .download {
+.delete, .save, .download {
   position: relative;
   float: left;
   width: 35px;
   height: 35px;
-  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-left: 10px;
   margin-top: 7px;
@@ -482,7 +479,6 @@ li:hover {
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
@@ -496,12 +492,11 @@ li:hover {
   border-radius: 33%;
 }
 
-.setting {
+.setting, .archive {
   position: relative;
   float: right;
   width: 35px;
   height: 35px;
-  border: 1px solid #e6e6e6;
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 7px;
@@ -579,7 +574,7 @@ li:hover {
   z-index: 20;
   border-left: 1px solid #e6e6e6;
   left: 100%;
-  width: 30%;
+  width: 413px;
   height: 100vh;
   background: #fff;
   padding-top: 56px;
@@ -594,7 +589,7 @@ li:hover {
 }
 
 .openSetting {
-  left: 70%;
+  left: calc(100% - 413px);
 }
 
 .openArchive {
@@ -717,6 +712,7 @@ li:hover {
 
 .save-button {
   margin-left: 10%;
+  margin-top: 40px;
 }
 
 .save-button:focus {
@@ -752,6 +748,10 @@ li:hover {
   margin-right: 54px;
 }
 
+.save-close {
+  margin-top: 40px;
+}
+
 .erase-no:hover {
   background: #fff;
   color: #87deff;
@@ -781,20 +781,25 @@ li:hover {
   font-weight: 200;
   color: #828282;
   padding-left: 10px;
+  margin-top: 18px;
 }
 
 #save-modal-name:focus {
   outline: none;
 }
 
-.save-name {
+.save-name, .progress-name {
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   color: #505050;
   font-size: 29px;
   margin-left: 9%;
-  margin-top: 32px;
+  margin-top: 38px;
+}
+
+.progress-name {
+  margin-top: -33px;
 }
 
 progress {
@@ -888,8 +893,8 @@ progress {
   z-index: 2;
 }
 
-.img-del-yes:hover{
-  background:transparent;
+.img-del-yes:hover {
+  background: transparent;
   color: #87deff;
 }
 
@@ -912,11 +917,13 @@ progress {
   margin-right: 54px;
   z-index: 2;
 }
+
 .img-del-cancle:focus {
   outline: none;
 }
-.img-del-cancle:hover{
-  background:transparent;
+
+.img-del-cancle:hover {
+  background: transparent;
   color: #87deff;
 }
 
@@ -924,15 +931,46 @@ progress {
   display: none;
 }
 
-.hide-img{
+.hide-img {
   opacity: 0;
 }
 
-.hide-img-height{
+.hide-img-height {
   height: 0px;
 }
 
-.save-header{
+.save-header {
   transition: 0.5s;
   opacity: 1;
+  z-index: 2;
+}
+
+.hide-header {
+  opacity: 0;
+}
+
+.progress-header {
+  transition: .5s;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.progress {
+  width: 80%;
+  height: 26px;
+  position: absolute;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid #505050;
+  border-radius: 3px;
+  padding: 2px 2px;
+}
+
+.bar {
+  width: 0%;
+  height: 100%;
+  background: #505050;
+  border-radius: 1px;
+  transition: .5s;
 }

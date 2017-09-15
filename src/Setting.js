@@ -108,11 +108,11 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE HUE</div>
-        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="360" value={this.props.val.stroke4strokeOpacity} onChange={this.handleHue}/>
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="0" max="360" value={this.props.val.stroke4strokeHue} onChange={this.props.handleHue}/>
         </div>
         <div className='option'>
         <div className='strokeOpacity'>HUE LIMIT</div>
-        <input id='opacity' type='number' data-name='stroke4' step="1" min="1" max="360" value={this.props.val.stroke4strokeHuelimit} onChange={this.props.handleHuelimit} />
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="0" max="360" value={this.props.val.stroke4strokeHuelimit} onChange={this.props.handleHuelimit} />
         </div>
         <div className='option'>
         <div className='strokeOpacity'>STROKE SATURATION</div>
@@ -124,7 +124,11 @@ class Setting extends Component{
         </div>
         <div className='option'>
         <div className='strokeDistance'>DISTANCE</div>
-        <input id='opacity' type='number' data-name='stroke2' step="1" min="100" max="1000000" value={this.props.val.stroke2strokeDistance} onChange={this.props.handleDistance} />
+        <input id='opacity' type='number' data-name='stroke4' step="1" min="100" max="1000000" value={this.props.val.stroke4strokeDistance} onChange={this.props.handleDistance} />
+        </div>
+        <div className='option'>
+        <div className='strokeDistance'>POINT DISTANCE</div>
+        <input id='opacity' type='number' data-name='stroke4' step="0.1" min="0.5" max="50.0" value={this.props.val.stroke4strokePointDistance} onChange={this.props.handlePointDistance} />
         </div>
       </div>
     )
