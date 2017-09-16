@@ -482,13 +482,7 @@ logoutFacebook(){
       <div className="App">
         {this.state.grid?
           <Grid/>:null}
-          <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
-            handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
-          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)}
-        handleNearpoint={this.handleStrokeNearpoint.bind(this)}/>
-          <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
-          <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
-          <Archive user={this.state.id} images={this.state.images}/>
+
         {this.state.user==null?
           <div>
             <div className='head'>SCRAP<span className='beta'>Beta</span></div>
@@ -502,7 +496,13 @@ logoutFacebook(){
           </div>:null}
           {this.state.user?
             <div>
-
+              <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
+                handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
+              handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)}
+            handleNearpoint={this.handleStrokeNearpoint.bind(this)}/>
+              <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
+              <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
+              <Archive user={this.state.id} images={this.state.images}/>
            <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.showsavemodal} download={this.downloadImage}
              openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.showerasemodal} />
            { this.state.open?
