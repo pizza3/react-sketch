@@ -25,11 +25,11 @@
 
 .head {
   font-family: 'Montserrat', sans-serif;
-  font-size: 86px;
+  font-size: 71px;
   font-weight: 900;
   left: 0;
   right: 0;
-  margin-top: 8vh;
+  margin-top: 1vh;
   position: fixed;
   text-align: center;
   color: #292929;
@@ -47,7 +47,7 @@
   padding-bottom: 1px;
   border-radius: 3px;
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 200;
   padding-left: ;
   letter-spacing: 0px;
@@ -59,13 +59,13 @@
 
 .slogan {
   font-family: 'Roboto', sans-serif;
-  font-size: 27px;
+  font-size: 15px;
   font-weight: 200;
   letter-spacing: 7px;
   word-spacing: 2px;
   left: 0;
   right: 0;
-  margin-top: 26vh;
+  margin-top: 12vh;
   position: fixed;
   text-align: center;
   color: #87deff;
@@ -78,10 +78,10 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 58vh;
+  margin-top: 76vh;
   width: 382px;
   height: 92px;
-  z-index: 20;
+  z-index: 300;
   background: #fff;
   color: #fff;
   border-radius: 3px;
@@ -92,6 +92,10 @@
   background-size: cover;
   transform: scale(.5);
   transition: .4s;
+}
+
+video {
+  border-radius: 4px;
 }
 
 .facebook-signin {
@@ -202,6 +206,11 @@
   letter-spacing: 2px;
   padding-left: 10px;
   color: #87deff;
+}
+
+.stoke-con {
+  width: 111px;
+  position: absolute;
 }
 
 .strokePicker {
@@ -342,7 +351,7 @@ li:hover {
   background: #fff;
   border-radius: 50%;
   margin-left: 10px;
-  margin-top: -144px;
+  margin-top: -129px;
   cursor: pointer;
   -webkit-transition: .5s;
   -o-transition: .5s;
@@ -358,7 +367,7 @@ li:hover {
   background: #fff;
   border-radius: 50%;
   margin-left: 10px;
-  margin-top: -193px;
+  margin-top: -173px;
   cursor: pointer;
   -webkit-transition: .5s;
   -o-transition: .5s;
@@ -374,7 +383,7 @@ li:hover {
   background: #fff;
   border-radius: 50%;
   margin-left: 10px;
-  margin-top: -95px;
+  margin-top: -85px;
   cursor: pointer;
   -webkit-transition: .5s;
   -o-transition: .5s;
@@ -593,7 +602,7 @@ li:hover {
 }
 
 .openArchive {
-  left: 70%;
+  left: calc(100% - 413px);
 }
 
 .setting-header, .archive-header {
@@ -832,7 +841,7 @@ progress {
 .arc-img {
   position: relative;
   width: 80%;
-  height: 200px;
+  height: calc(auto + 400px);
   margin-left: 10%;
   display: block;
 }
@@ -973,4 +982,91 @@ progress {
   background: #505050;
   border-radius: 1px;
   transition: .5s;
+}
+
+.frame-box {
+  width: 100%;
+  height: 0px;
+  position: fixed;
+  padding-bottom: 54.346%;
+  left: 0px;
+  right: 0px;
+  margin: 21vh auto auto;
+  top: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.frame {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 10px 70px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 70px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 70px 0px rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width:425px) {
+  .navigation {
+    width: 50px;
+    height: 100vh;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: none;
+  }
+  .logo {
+    visibility: hidden;
+    display: none;
+  }
+  .rainbow {
+    margin-left: 10px;
+  }
+  .stroke-Box {
+    width: 35px;
+    height: 151px;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: none;
+  }
+  #dropdown {
+    left: 8px;
+    top: 0px;
+    transform: scale(0.9) rotate(-90deg);
+  }
+  .stoke-con {
+    position: absolute;
+    transform: rotate(-90deg);
+    top: 60px;
+    right: -63px;
+    width: 159px;
+  }
+  .setting-box, .archive-box {
+    width: calc(100vw - 50px);
+  }
+  .openSetting {
+    left: 50px;
+  }
+  .openArchive {
+    left: 50px;
+  }
+  .strokePicker {
+    top: 101px;
+    left: 62px;
+  }
+  .sketch-picker {
+    top: 57px;
+    left: 62px;
+  }
+  .undo-button, .redo-button {
+    margin-left: 7px;
+  }
+  .delete, .save, .download {
+    margin-left: 7px;
+  }
 }

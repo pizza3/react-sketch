@@ -50,10 +50,7 @@ class Archive extends Component{
       images:newProps.images
     })
   }
-
-  removeItem(){
-
-  }
+  
   render(){
     let index={
       'width': '35px',

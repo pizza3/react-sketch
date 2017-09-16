@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './Navbar.js';
 import Sketch from './Sketch.js';
 import Grid from './Grid.js';
-import Visual1 from './Visual1.js';
 import Video from './Video.js';
 import Setting from './Setting.js';
 import Archive from './Archive.js';
@@ -50,12 +49,13 @@ class App extends Component {
       stroke2strokeLightening:50,
       stroke2strokeHuelimit:360,
       stroke2strokeDistance:1000,
-      stroke3strokeWidth:10,
+      stroke3strokeWidth:1,
       stroke3strokeOpacity:1,
       stroke3strokeHue:1,
       stroke3strokeSaturation:100,
       stroke3strokeLightening:50,
       stroke3strokeHuelimit:360,
+      stroke3strokeNearpoint:5,
       stroke4strokeWidth:1,
       stroke4strokeOpacity:1,
       stroke4strokeHue:1,
@@ -92,7 +92,7 @@ class App extends Component {
     this.handleStrokeHuelimit = this.handleStrokeHuelimit.bind(this);
     this.handleStrokeDistance = this.handleStrokeDistance.bind(this);
     this.handleStrokePointDistance = this.handleStrokePointDistance.bind(this);
-
+    this.handleStrokeNearpoint=this.handleStrokeNearpoint.bind(this);
   }
 
 
@@ -162,6 +162,13 @@ handleStrokePointDistance(event){
   let stroke=event.target.getAttribute('data-name');
   this.setState({
     [stroke+'strokePointDistance']:event.target.value
+  });
+}
+
+handleStrokeNearpoint(event){
+  let stroke=event.target.getAttribute('data-name');
+  this.setState({
+    [stroke+'strokeNearpoint']:event.target.value
   });
 }
 
@@ -442,9 +449,6 @@ logoutFacebook(){
 
 
   componentWillMount(){
-    // let user  = this.state.user;
-    // let userid  = this.state.user.uid;
-
     auth.onAuthStateChanged((user)=>{
       if(user){
         this.setState({
@@ -456,14 +460,12 @@ logoutFacebook(){
             let items = snapshot.val();
             let images=[];
             for(let item in items){
-              // console.log(items[item].url)
               images.push({
                 id:item,
                 name:items[item].name,
                 url:items[item].url
               })
             }
-            // console.log(items);
               this.setState({
               images:images
             })
@@ -471,28 +473,6 @@ logoutFacebook(){
         });
       }
     });
-
-    // const itemsRef = firebase.database().ref(this.state.id);
-    // itemsRef.on('value', (snapshot)=>{
-    //   console.log('ji');
-    //   let items = snapshot.val();
-    //   let images=[];
-    //   for(let item in items){
-    //     // console.log(items[item].url)
-    //     images.push({
-    //       id:item,
-    //       name:items[item].name,
-    //       url:items[item].url
-    //     })
-    //   }
-    //   console.log(items);
-    //     this.setState({
-    //     images:items
-    //   })
-    // })
-
-
-
   }
 
 
@@ -504,7 +484,8 @@ logoutFacebook(){
           <Grid/>:null}
           <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
             handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
-          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)} />
+          handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)}
+        handleNearpoint={this.handleStrokeNearpoint.bind(this)}/>
           <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
           <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
           <Archive user={this.state.id} images={this.state.images}/>
@@ -512,7 +493,8 @@ logoutFacebook(){
           <div>
             <div className='head'>SCRAP<span className='beta'>Beta</span></div>
             <div className='slogan'>Create Abstract Art With Ease.</div>
-            {/* <Video/> */}
+            <Video/>
+            <div className='vid-cover'></div>
             <div className='google-signin' onClick={this.loginGoogle}></div>
              {/* <div className='facebook-signin' onClick={this.loginFacebook}></div>  */}
              {/* <div className='grid-img'></div>

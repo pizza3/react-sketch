@@ -189,28 +189,26 @@ class Sketch extends Component{
           }
         }
         else {
-
-        this.state.points.push({ x: e.clientX, y: e.clientY-50 });
-        this.state.ctx.beginPath();
-        this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
-        this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
-        this.state.ctx.stroke();
-        for (let i = 0, len = this.state.points.length; i < len; i++) {
-          var dx1 = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
-          var dy1 = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
-          var d1 = dx1 * dx1 + dy1 * dy1;
-
-          if (d1 < this.props.val.stroke2strokeDistance) {
-            this.state.ctx.beginPath();
-            this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke2strokeSaturation}%, ${this.props.val.stroke2strokeLightening}%,0.1)`;
-            this.setState({
-              hue:this.state.hue+1
-            });
+          this.state.points.push({ x: e.clientX, y: e.clientY-50 });
+          this.state.ctx.beginPath();
+          this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
+          this.state.ctx.lineTo(this.state.points[this.state.points.length - 1].x, this.state.points[this.state.points.length - 1].y);
+          this.state.ctx.stroke();
+          for (let i = 0, len = this.state.points.length; i < len; i++) {
+            var dx1 = this.state.points[i].x - this.state.points[this.state.points.length-1].x;
+            var dy1 = this.state.points[i].y - this.state.points[this.state.points.length-1].y;
+            var d1 = dx1 * dx1 + dy1 * dy1;
+            if (d1 < this.props.val.stroke2strokeDistance) {
+              this.state.ctx.beginPath();
+              this.state.ctx.strokeStyle = `hsla(${this.state.hue}, ${this.props.val.stroke2strokeSaturation}%, ${this.props.val.stroke2strokeLightening}%,0.1)`;
+              this.setState({
+                hue:this.state.hue+1
+              });
             if (this.state.hue >= this.props.val.stroke2strokeHuelimit) {
               this.setState({
                 hue:0
               });
-              }
+            }
             this.state.ctx.moveTo( this.state.points[this.state.points.length-1].x + (dx1 * 0.2), this.state.points[this.state.points.length-1].y + (dy1 * 0.2));
             this.state.ctx.lineTo( this.state.points[i].x - (dx1 * 0.2), this.state.points[i].y - (dy1 * 0.2));
             this.state.ctx.stroke();
@@ -222,12 +220,13 @@ class Sketch extends Component{
 
         case "2":
         if(this.state.normal){
-        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',1)';
+        this.state.points.push({ x: e.clientX, y: e.clientY-50 });
+        this.state.ctx.strokeStyle = 'rgba('+this.state.strokeColor.r+','+this.state.strokeColor.g+','+this.state.strokeColor.b+',0.1)';
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[0].x, this.state.points[0].y);
         for (var i = 1; i < this.state.points.length; i++) {
           this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
-          var nearPoint = this.state.points[i-5];
+          var nearPoint = this.state.points[i-this.props.val.stroke3strokeNearpoint];
           if (nearPoint) {
             this.state.ctx.moveTo(nearPoint.x, nearPoint.y);
             this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
@@ -242,7 +241,7 @@ class Sketch extends Component{
         this.state.ctx.moveTo(this.state.points[0].x, this.state.points[0].y);
         for (var i = 1; i < this.state.points.length; i++) {
           this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
-          var nearPoint = this.state.points[i-5];
+          var nearPoint = this.state.points[i-this.props.val.stroke3strokeNearpoint];
           if (nearPoint) {
             this.state.ctx.moveTo(nearPoint.x, nearPoint.y);
             this.state.ctx.lineTo(this.state.points[i].x, this.state.points[i].y);
@@ -287,7 +286,6 @@ class Sketch extends Component{
         this.setState({
           hue:this.props.val.stroke4strokeHue
         });
-        var hue=this.props.val.stroke4strokeHue;
         this.state.points.push({ x: e.clientX, y: e.clientY-50 });
         this.state.ctx.beginPath();
         this.state.ctx.moveTo(this.state.points[this.state.points.length - 2].x, this.state.points[this.state.points.length - 2].y);
@@ -304,6 +302,7 @@ class Sketch extends Component{
             this.state.ctx.stroke();
           }
         }
+        var hue=this.props.val.stroke4strokeHue;
         this.state.ctx.strokeStyle = `hsla(${hue}, ${this.props.val.stroke4strokeSaturation}%, ${this.props.val.stroke4strokeLightening}%,0.1)`;
         // this.setState({
         //   hue:this.state.hue+1
@@ -343,12 +342,6 @@ class Sketch extends Component{
 
   );
     if(this.state.cStep<this.state.cPushArray.length){
-      // let ne = [];
-      // ne=this.state.cPushArray;
-      // ne.length = this.state.cStep;
-      // this.setState({
-      //   newArr:ne
-      // })
     }
     let newArr =  this.state.cPushArray.slice();
     newArr.push(this.state.canvas.toDataURL());

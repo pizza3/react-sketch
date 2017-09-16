@@ -97,6 +97,10 @@ class Setting extends Component{
         <div className='strokeOpacity'>STROKE LIGHTENING</div>
         <input id='opacity' type='number' data-name='stroke3' step="1" min="1" max="100" value={this.props.val.stroke3strokeLightening} onChange={this.props.handleLightening} />
         </div>
+        <div className='option'>
+        <div className='strokeOpacity'>NEAR POINT</div>
+        <input id='opacity' type='number' data-name='stroke3' step="1" min="5" max="100" value={this.props.val.stroke3strokeNearpoint} onChange={this.props.handleNearpoint} />
+        </div>
         <div className='setting-stroke1'>FUR</div>
         <div className='option'>
         <div className='strokeWidth'>STROKE WIDTH</div>

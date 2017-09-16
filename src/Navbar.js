@@ -62,7 +62,9 @@ class Navbar extends Component{
           <span id='pick-span' className='pick-span active'></span>
         </div>
         <div className='stroke-Box' onClick={this.props.chngStroke}>
-          {this.props.strokevalue}
+          <span className="hint--bottom hint--rounded" aria-label="Stroke" style={index} >
+          <span className='stoke-con'>{this.props.strokevalue}</span>
+        </span>
           <svg id='dropdown' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" >
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
