@@ -9,9 +9,6 @@ class Save extends Component {
     this.handleChange=this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(newProps){
-
-  }
 
   handleChange(e){
     this.setState({
