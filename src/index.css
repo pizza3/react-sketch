@@ -1027,6 +1027,21 @@ progress {
     transform-origin: center;
   }
 }
+
+@media (max-width:768px) {
+  .frame-box{
+    margin: 20vh auto auto;
+  }
+
+  .frame {
+    width: 94%;
+    height: 94%;
+  }
+
+  .google-signin{
+    margin-top: 82vh;
+  }
+}
 @media (max-width:425px) {
   .navigation {
     width: 50px;
@@ -1082,4 +1097,18 @@ progress {
   .delete, .save, .download {
     margin-left: 7px;
   }
+
+  .frame-box {
+    margin: 30vh auto auto;
+  }
+
+  .slogan{
+    margin-top: 18vh;
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+
+  .google-signin {
+    margin-top: 76vh;
+}
 }
