@@ -15,7 +15,7 @@ class Erase extends Component {
     return(
       <div id='erase-modal' className='erase-modal disp'>
         <div className='erase-header'>
-          ARE YOU SURE, YOU WANT TO <span style={col}>DELETE</span> THE WHOLE SKETCH.
+          ARE YOU SURE, YOU WANT TO <span style={col}>DELETE</span> THE WHOLE SKETCH ?
         </div>
         <button className='erase-yes' onClick={this.props.delete}>YES</button>
         <button className='erase-no' onClick={this.props.nodelete}>NO</button>

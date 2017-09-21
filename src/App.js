@@ -498,15 +498,16 @@ logoutFacebook(){
             <div>
               <Setting val={this.state}  handleStroke={this.handleStrokeWidth.bind(this)} handleOpacity={this.handleStrokeOpacity.bind(this)}
                 handleHue={this.handleStrokeHue.bind(this)} handleSaturation={this.handleStrokeSaturation.bind(this)} handleLightening={this.handleStrokeLightening.bind(this)}
-              handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)}
-            handleNearpoint={this.handleStrokeNearpoint.bind(this)}/>
+                handleHuelimit={this.handleStrokeHuelimit.bind(this)} handleDistance={this.handleStrokeDistance.bind(this)} handlePointDistance={this.handleStrokePointDistance.bind(this)}
+                handleNearpoint={this.handleStrokeNearpoint.bind(this)}/>
               <Save handleChange={this.namehandleChange.bind(this)} saveCanvas={this.saveCanvas} closeSave={this.showsavemodal}/>
               <Erase delete={this.deleteCanvas} nodelete={this.showerasemodal}/>
               <Archive user={this.state.id} images={this.state.images}/>
            <Navbar colorvalue={this.state.colorPass} strokevalue={this.state.strokeName[this.state.strokeNo]} user={this.state.user} userOut={this.logoutGoogle} action={this.openState} save={this.showsavemodal} download={this.downloadImage}
              openSet={this.openSetting} openArc={this.openArchive} rainbow={this.openRainbow} chngStroke={this.openStroke} dispGrid={this.openGrid} undo={this.undoState} redo={this.redoState} onClick={this.props.rainbow} delete={this.showerasemodal} />
            { this.state.open?
-            <SketchPicker color='#292929' onChange={this.handleChange }  />:null }
+            <SketchPicker color='#292929' onChange={this.handleChange }  />:
+            null }
             {this.state.stroke?
             <div className='strokePicker'>
               <ul>
@@ -523,7 +524,9 @@ logoutFacebook(){
                   FUR
                 </li>
               </ul>
-            </div>:null}
+            </div>:
+            <div className='strokePicker strokePicker-hide'></div>
+          }
           <div id='filter' className='filter hide-filter'></div>
          <Sketch val={this.state} onClick={this.openRainbow} colorvalue={this.state.colorPass} strokevalue={this.state.strokeNo} normalVal={this.state.normal} user={this.state.user} undoVal={this.state.undo} redoVal={this.state.redo} delete={this.state.delete} save={this.state.save}/>
        </div>:null}

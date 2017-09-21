@@ -218,6 +218,13 @@ video {
   left: 277px;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
+  transition: .4s;
+  opacity: 1;
+}
+
+.strokePicker-hide{
+  opacity: 0;
+  visibility: hidden;
 }
 
 ul {
