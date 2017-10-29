@@ -1,5 +1,5 @@
 # SCRAP
 
-### DEMO: coming soon!!
+### DEMO: https://scrap.netlify.com/
 
 ![screenshot](/src/images/visual.png)
